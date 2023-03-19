@@ -1,0 +1,33 @@
+from django.db import models
+from django.core.validators import MinValueValidator
+
+# Create your models here.
+class Application(models.Model):
+    GRADES = (
+        ('--', '--'),
+        ('a', 'A'),
+        ('a-', 'A-'),
+        ('b+', 'B+'),
+        ('b-', 'B-'),
+        ('c+', 'C+'),
+        ('c', 'C'),
+        ('c-', 'C-'),
+        ('d+', 'D+'),
+        ('d', 'D'),
+        ('d-', 'D-'),
+        ('f', 'F'),
+        ('n/a', 'N/A')
+    )
+    past_course = models.CharField(choices=[('yes', 'Yes'),('no', 'No')], max_length=50, default='')
+        #in form: define radioselect with class "horizontal-list"
+        #in css: .horizontal-list li {
+                    #display: inline-block;
+                    #margin-right: 10px;
+        #}
+    grade = models.CharField(max_length=50, choices=GRADES, default='')
+        #in form: define textinput with class "combobox"
+    hours = models.DecimalField(max_digits=2, decimal_places=0, validators=[MinValueValidator(0)], default=0)
+        #in form: define NumberInput with attr min: 0
+    other_courses = models.CharField(max_length=800, default=None)
+        #in form: define textarea with attr 5 rows
+    misc_information = models.CharField(max_length=800, default=None)
