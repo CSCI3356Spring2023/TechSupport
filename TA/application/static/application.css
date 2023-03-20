@@ -1,0 +1,15 @@
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  max-width: 75%;
+}
+
