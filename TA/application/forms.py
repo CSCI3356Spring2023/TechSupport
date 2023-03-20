@@ -6,11 +6,11 @@ class ApplicationForm(forms.ModelForm):
         model = Application
         fields = ('past_course', 'grade', 'hours', 'other_courses', 'misc_information')
         widgets = {
-            'past_course': forms.RadioSelect(attrs={'class': 'horizontal-list', 'id':'past'}),
-            'grade': forms.Select(attrs={'class': 'combobox'}),
-            'hours': forms.NumberInput(attrs={'min': 0}),
-            'other_courses': forms.Textarea(attrs={'rows': 4}),
-            'misc_information': forms.Textarea(attrs={'rows': 4}),
+            'past_course': forms.RadioSelect(attrs={'class': 'form-check-input'}),
+            'grade': forms.Select(attrs={'class': 'form-select'}),
+            'hours': forms.NumberInput(attrs={'class': 'form-control', 'min': 0}),
+            'other_courses': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'misc_information': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
     
     def __init__(self, *args, **kwargs):
