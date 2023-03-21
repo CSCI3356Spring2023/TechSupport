@@ -1,57 +1,98 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'application.css' %}" />
+
     <title>Add Course - Instructor</title>
+
+
   </head>
+
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">My Account</a></li>
-          <li><a href="#">Sign Out</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <form>
-        <label for="course-name">Course Name:</label>
-        <input type="text" id="course-name" name="course-name"><br><br>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+            <h2>BASE HEADER</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col offset-md-3">
+          <div class="form-group">
+              <form method="post">
+                {% csrf_token %}
+                <h2 class="border-bottom border-2 border-dark mb-4">
+                  Instructor Add Course
+                </h2>
+                <p class="mb-4">
+                  Please Enter Info Below
+                </p>
 
-        <label for="course-number">Course Number/Section:</label>
-        <input type="text" id="course-number" name="course-number"><br><br>
+                <div class="form-group mb-4">
+                  {{ form.course_name.label_tag }} {{ form.course_name }}
+                </div>
 
-        <label for="course-instructor">Course Instructor:</label>
-        <input type="text" id="course-instructor" name="course-instructor"><br><br>
+                <div class="form-group mb-4">
+                  {{ form.course_number.label_tag }} {{ form.course_number }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.course_instructor.label_tag }} {{ form.course_instructor }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.course_description.label_tag }} {{ form.course_description }}
+                </div>
 
-        <label for="course-description">Course Description:</label>
-        <input type="text" id="course-description" name="course-description"><br><br>
+                <div class="form-group mb-4">
+                  {{ form.total_time_commitment.label_tag }} {{ form.course_name }}
+                </div>
 
-        <label for="time-commitment">Time Commitment:</label>
-        <input type="text" id="time-commitment" name="time-commitment"><br><br>
+                <div class="form-group mb-4">
+                  {{ form.has_discussion.label_tag }} {% for radio in form.has_discussion %}
+                  <div class="form-check">{{ radio }}</div>
+                  {% endfor %}
+                </div>
 
-        <label for="other-information">Other Relevant Information:</label>
-        <input type="text" id="other-information" name="other-information"><br><br>
+                <div class="form-group mb-4">
+                  {{ form.num_ta_needed.label_tag }} {{ form.num_ta_needed }}
+                </div>
 
-        <label for="number-tas-needed">Number of TAs Needed:</label>
-        <input type="number" id="number-tas-needed" name="number-tas-needed"><br><br>
 
-        <label for="office-hours-required">Office Hours Required:</label>
-        <input type="number" id="office-hours-required" name="office-hours-required"><br><br>
+                <div class="form-group mb-4">
+                  {{ form.graded_meeting.label_tag }} {% for radio in form.graded_meeting %}
+                  <div class="form-check">{{ radio }}</div>
+                  {% endfor %}
+                </div>
 
-        <label for="has-discussion">Has Discussion:</label>
-        <button type="button" id="has-discussion-yes">Yes</button>
-        <button type="button" id="has-discussion-no">No</button><br><br>
+                <div class="form-group mb-4">
+                  {{ form.office_hours.label_tag }} {{ form.office_hours }}
+                </div>
+                
 
-        <label for="homework-graded-in-meeting">Homework/Assignments Graded in Meeting:</label>
-        <button type="button" id="homework-graded-yes">Yes</button>
-        <button type="button" id="homework-graded-no">No</button><br><br>
+                <div class="form-group mb-4">
+                  {{ form.other_info.label_tag }} {{ form.other_info}}
+                </div>
 
-        <button type="button" id="cancel">Cancel</button>
-        <button type="button" id="save">Save</button>
-        <button type="button" id="add-course">Add Course</button>
-      </form>
-    </main>
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                  Submit
+                </button>
+
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
+
+

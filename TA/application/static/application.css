@@ -14,3 +14,10 @@ form {
   overflow-y: scroll;
 }
 
+#id_hours {
+  width: 50px;
+}
+
+#id_grade {
+  width: 70px;
+}
