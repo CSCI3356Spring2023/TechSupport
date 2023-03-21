@@ -1,8 +1,8 @@
 </head>
 <body>
     {% extends 'base.html' %}
-    {% block title %}Home{% endblock %}
     {% block content %}
+    {% block title %}Teacher Home{% endblock %}
     {% if user.is_authenticated %}
         Hello {{ user.username}}!
         <p><a href="{% url 'logout' %}">Log Out</a></p>
