@@ -3,7 +3,7 @@ from django.shortcuts import render
 from .forms import InstructorAddCourse
 # Create your views here.
 
-def instructor_add_course__view(request, *args, **kwargs):#args, and key word args
+def instructor_add_course_view(request, *args, **kwargs):#args, and key word args
 	if request.method == 'POST':
 		form = InstructorAddCourse(request.POST)
 		if form.is_valid():
