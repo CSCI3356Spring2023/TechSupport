@@ -14,7 +14,7 @@ class InstructorAddCourseForm(forms.ModelForm):
             'total_time_commitment': forms.NumberInput(attrs={'class': 'form-control', 'rows': 3}),
             'has_discussion': forms.RadioSelect(attrs={'class': 'form-check-input'}),
             'num_ta_needed': forms.NumberInput(attrs={'class': 'form-control', 'rows': 3}),
-            'office_hours': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
+            'office_hours': forms.NumberInput(attrs={'class': 'form-control', 'rows': 3}),
             'graded_meeting': forms.RadioSelect(attrs={'class': 'form-check-input'}),
             'other_info': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
 
@@ -38,7 +38,7 @@ class InstructorAddCourseForm(forms.ModelForm):
 
         self.fields['num_ta_needed'].label = 'Number of TAs Needed?'
 
-        self.fields['office_hours'].label = 'Number of Hours per Week'
+        self.fields['office_hours'].label = 'Number of Office Hours per Week'
 
         self.fields['graded_meeting'].label = 'Assignments Graded in Meeting?'
 
