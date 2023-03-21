@@ -18,7 +18,7 @@ def login_home(request):
             elif role == 'T':
                 return redirect('/teacher')
             elif role == 'A':
-                return redirect('/admin')
+                return redirect('/admin_home')
             else:
                 messages.error(request, 'Invalid login credentials')
     else:
