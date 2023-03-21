@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
+{% extends 'appbase.html' %} {% block content %} {% load static %}
 <html>
   <head>
     <meta charset="utf-8" />
@@ -15,14 +15,8 @@
     />
     <link rel="stylesheet" href="{% static 'application.css' %}" />
   </head>
-
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-            <h2>BASE HEADER</h2>
-        </div>
-      </div>
       <div class="row">
         <div class="col offset-md-3">
           <div class="form-group">
@@ -64,3 +58,4 @@
     </div>
   </body>
 </html>
+{% endblock %}
