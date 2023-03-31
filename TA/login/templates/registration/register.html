@@ -1,10 +1,20 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<h2>Register</h2>
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title>TA Application</title>
+</head>
+<body>
+    <header>
+<h2 style="color:brown"><center>Welcome to the TA Application HomePage!</center>
+</header>
+<main>
+    <h2>Register</h2>
 <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Register</button>
 </form>
-{% endblock %}
+</main>
+</body>
+</html>
