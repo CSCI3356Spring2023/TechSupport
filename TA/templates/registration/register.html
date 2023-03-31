@@ -9,8 +9,12 @@
 <h2 style="color:brown"><center>Welcome to the TA Application HomePage!</center>
 </header>
 <main>
-    {% block content %}
-    {% endblock %}
+    <h2>Register</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
 </main>
 </body>
 </html>
