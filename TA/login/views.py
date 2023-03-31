@@ -24,19 +24,19 @@ def login_home(request):
     else:
         form = AuthenticationForm()
     
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'login/login.html', {'form': form})
 
 @login_required
 def student_home(request):
-    return render(request, 'student_home.html')
+    return render(request, 'login/student_home.html')
 
 @login_required
 def teacher_home(request):
-    return render(request, 'teacher_home.html')
+    return render(request, 'login/teacher_home.html')
 
 @login_required
 def admin_home(request):
-    return render(request, 'admin_home.html')
+    return render(request, 'login/admin_home.html')
 
 
 def logout(request):
