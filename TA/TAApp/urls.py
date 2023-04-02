@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 from application.views import application_view
 from InstructorAddCourse.views import instructor_add_course_view
+from adminSummary import admin_summary_view
 
 
 urlpatterns = [
@@ -26,6 +27,7 @@ urlpatterns = [
     path('', include('login.urls')),
     path('application/', application_view),
     path('add_course/', instructor_add_course_view),
+    path('admin_summary/', admin_summary_view),
 ]
 
 
