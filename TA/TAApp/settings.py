@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "login",
     'application',
     'InstructorAddCourse',
+    'adminSummary'
 ]
 
 MIDDLEWARE = [
