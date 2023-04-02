@@ -1,0 +1,56 @@
+body {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.item-row {
+  height: 25px;
+}
+
+.filter-box {
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.filter-group {
+  margin-bottom: 10px;
+}
+
+.filter-group h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-group input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.applied-filters input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar input[type="text"],
+.search-bar button {
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+[class*="col"] {
+  padding: 0.5rem;
+}
