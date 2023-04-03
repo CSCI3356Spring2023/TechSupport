@@ -27,19 +27,51 @@ def login_home(request):
     else:
         form = CustomAuthenticationForm()
     
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'login/login.html', {'form': form})
 
 @login_required
 def student_home(request):
-    return render(request, 'student_home.html')
+    return render(request, 'login/student_home.html')
 
 @login_required
 def teacher_home(request):
-    return render(request, 'teacher_home.html')
+    return render(request, 'login/teacher_home.html')
 
 @login_required
 def admin_home(request):
-    return render(request, 'admin_home.html')
+    return render(request, 'login/admin_home.html')
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+            role = form.cleaned_data.get('role')
+            
+        
+
+            user = CustomUser.objects.create_user(
+                username=username,
+                password=password,
+                role=role,  # Set the user's role based on the selected role
+            )
+
+            user.save()
+
+            # Log the user in and redirect to the appropriate page based on their role
+            login(request, user)
+            if user.role == 'S':
+                return redirect('/student')
+            elif user.role == 'T':
+                return redirect('/teacher')
+            elif user.role == 'A':
+                return redirect('/admin_home')
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'register.html', {'form': form})
 
 
 def register(request):
