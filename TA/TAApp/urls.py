@@ -18,15 +18,17 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 from application.views import application_view
 from InstructorAddCourse.views import instructor_add_course_view
+from django.contrib.auth import views as auth_views
 from adminSummary.views import admin_summary_view
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    #path('', include("django.contrib.auth.urls")),
+    path('', include("django.contrib.auth.urls")),
     path('', include('login.urls')),
     path('application/', application_view),
     path('add_course/', instructor_add_course_view),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('admin_summary/', admin_summary_view),
 ]
 
