@@ -1,35 +1,34 @@
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
+from .models import CustomUser
 
 # Define choices for the role field
-ROLE_CHOICES = [
-    ('student', 'Student'),
-    ('teacher', 'Teacher'),
-    ('admin', 'Admin'),
-]
+ROLE_CHOICES = [    ('S', 'Student'),    ('T', 'Teacher'),    ('A', 'Admin'),]
 
-# Create a custom login form that includes the role field
+from django.contrib.auth.forms import AuthenticationForm
+from django import forms
+
 class CustomAuthenticationForm(AuthenticationForm):
+    role = forms.CharField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Username'})
+        self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
+        #self.fields['role'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Role'})
+
+    def clean(self):
+        cleaned_data = super().clean()
+        role = cleaned_data.get('role')
+        if not role:
+            raise forms.ValidationError('Role is required.')
+        return cleaned_data
+
+
+# Create a custom registration form that includes the role field
+class RegistrationForm(UserCreationForm):
     role = forms.ChoiceField(choices=ROLE_CHOICES)
 
-    # Override the default clean method to validate the role field
-    def clean(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
-        role = self.cleaned_data.get('role')
-
-        # Use Django's built-in authentication backend to validate the user's credentials
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            # Check if the user belongs to the selected role
-            if role == 'student' and user.is_student:
-                return self.cleaned_data
-            elif role == 'teacher' and user.is_teacher:
-                return self.cleaned_data
-            elif role == 'admin' and user.is_admin:
-                return self.cleaned_data
-
-        # If the user's credentials or role are invalid, raise a validation error
-        raise forms.ValidationError('Invalid login credentials')
-
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = ['username', 'password1', 'password2', 'role']

@@ -124,3 +124,4 @@ LOGIN_REDIRECT_URL = 'student_home'
 LOGOUT_REDIRECT_URL = "logout"
 
 AUTH_USER_MODEL = 'login.CustomUser'
+
