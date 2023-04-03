@@ -5,15 +5,13 @@
     <meta charset="UTF-8" />
     <title>Admin Summary Visualization</title>
     <link rel="stylesheet" href="{% static 'adminSummary.css' %}" />
-    
-
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-2">
           <div id="search-box">
-            <input type="text" id="search-input" placeholder="Search"/>
+            <input type="text" id="search-input" placeholder="Search" />
           </div>
         </div>
         <div class="col-sm-2">
@@ -21,14 +19,14 @@
         </div>
         <div class="col-sm">
           <div class="applied-filters">
-              <label
-                ><input type="checkbox" name="category" value="shoes" checked />
-                Shoes</label
-              >
-              <label
-                ><input type="checkbox" name="color" value="red" checked />
-                Red</label
-              >
+            <label
+              ><input type="checkbox" name="category" value="shoes" checked />
+              Shoes</label
+            >
+            <label
+              ><input type="checkbox" name="color" value="red" checked />
+              Red</label
+            >
           </div>
         </div>
         <div class="col-sm-2">
@@ -37,11 +35,9 @@
           </div>
         </div>
       </div>
-      <div class="row" id = "item-row">
+      <div class="row" id="item-row">
         <div class="col-sm">
-          <div class="text-end">
-            (# items)
-          </div>
+          <div class="text-end">({{course_count}} items)</div>
         </div>
       </div>
       <div class="row">
@@ -92,30 +88,20 @@
             <thead>
               <tr>
                 <th>Class<br />(Class Number)</th>
-                <th class = "text-end">Instructor</th>
-                <th class = "text-center">Spots</th>
-                <th class = "text-center">Edit</th>
+                <th class="text-end">Instructor</th>
+                <th class="text-center">Spots</th>
+                <th class="text-center">Edit</th>
               </tr>
             </thead>
             <tbody id="table-body">
+              {% for course in course_objects %}
               <tr>
-                <td>Text<br />#</td>
-                <td class = "text-end">Text</td>
-                <td class = "text-center">#</td>
+                <td>{{ course.course_name }}<br />{{ course.course_number}}</td>
+                <td class = "text-end">{{ course.course_instructor }}</td>
+                <td class = "text-center">?/{{ course.num_ta_needed }}</td>
                 <td class = "text-center"><button id="modify-btn">Modify</button></td>
               </tr>
-              <tr>
-                <td>Text<br />#</td>
-                <td class = "text-end">Text</td>
-                <td class = "text-center">#</td>
-                <td class = "text-center"><button id="modify-btn">Modify</button></td>
-              </tr>
-              <tr>
-                <td>Text<br />#</td>
-                <td class = "text-end">Text</td>
-                <td class = "text-center">#</td>
-                <td class = "text-center"><button id="modify-btn">Modify</button></td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
