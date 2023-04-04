@@ -8,6 +8,35 @@
     </head>
         <body>
             <div class="container-fluid">
+
+              <div class="row">
+                <div class="col-sm-2">
+                  <div id="search-box">
+                    <input type="text" id="search-input" placeholder="Search" />
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <button id="apply-to-search-btn">Apply to Search</button>
+                </div>
+                <div class="col-sm">
+                  <div class="applied-filters">
+                    <label
+                      ><input type="checkbox" name="category" value="shoes" checked />
+                      Spring 2023</label
+                    >
+                    <label
+                      ><input type="checkbox" name="color" value="red" checked />
+                      CSCI</label
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <div class="text-end">
+                    <button id="add-posting-btn">Add Posting</button>
+                  </div>
+                </div>
+              </div>
+
                 <div class="row">
 
                     <div class="col">
@@ -54,10 +83,14 @@
                     </div>
 
                     <div class="col">
-
+                        {% for course in course_objects %}
+                        <div class="border border-1 border-dark p-2">
+                            <div>{{ course.course_number}} - {{ course.course_name}}</div>
+                        </div>
+                        {% endfor %} 
                     </div>
 
-                    <div class="col-7">
+                    <div class="col-6">
                         <div class="border border-1 border-dark rounded p-3">
                             {% for course in course_objects %}
                             <div class="p-3">
