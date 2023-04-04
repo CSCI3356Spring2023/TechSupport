@@ -3,13 +3,61 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'application.css' %}" />
+        <link rel="stylesheet" href="{% static 'instructorSummary.css' %}" />
         <title>Instructor Courses</title>
     </head>
         <body>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col offset-sm-6">
+
+                    <div class="col">
+                        <div class="filter-box">
+                          <div class="filter-group">
+                            <h3>Term</h3>
+                            <label
+                              ><input type="checkbox" name="category" value="shoes" />
+                              Shoes</label
+                            >
+                            <label
+                              ><input type="checkbox" name="category" value="clothing" />
+                              Clothing</label
+                            >
+                            <label
+                              ><input type="checkbox" name="category" value="accessories" />
+                              Accessories</label
+                            >
+                          </div>
+                          <div class="filter-group">
+                            <h3>Department Code</h3>
+                            <label
+                              ><input type="checkbox" name="color" value="red" /> Red</label
+                            >
+                            <label
+                              ><input type="checkbox" name="color" value="blue" /> Blue</label
+                            >
+                            <label
+                              ><input type="checkbox" name="color" value="green" />
+                              Green</label
+                            >
+                          </div>
+                          <div class="filter-group">
+                            <h3>Status</h3>
+                            <label
+                              ><input type="checkbox" name="size" value="small" /> Open</label
+                            >
+                            <label
+                              ><input type="checkbox" name="size" value="medium" />
+                              Closed</label
+                            >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+
+                    </div>
+
+                    <div class="col-7">
                         <div class="border border-1 border-dark rounded p-3">
                             {% for course in course_objects %}
                             <div class="p-3">
