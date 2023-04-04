@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     "login",
     'application',
     'InstructorAddCourse',
-    'adminSummary',
-    'instructorSummary'
 ]
 
 MIDDLEWARE = [
@@ -118,19 +116,17 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-LOGIN_REDIRECT_URL = 'student_home'
-LOGOUT_REDIRECT_URL = "logout"
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = "/login/"
+LOGIN_URL = "/login"
 
 AUTH_USER_MODEL = 'login.CustomUser'
 
+<<<<<<< Updated upstream
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'swe2023testing@gmail.com'
@@ -138,3 +134,5 @@ EMAIL_HOST_PASSWORD = 'kvaqgqevyfokskbo'
 #password: testingtesting
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+=======
+>>>>>>> Stashed changes

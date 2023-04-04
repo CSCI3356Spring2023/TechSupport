@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title>TA Application</title>
+</head>
+<body>
+    <header>
+<h2 style="color:brown"><center>Welcome to the TA Application HomePage!</center>
+</header>
+<main>
+  <h1>Login</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+  </form>
+</main>
+</body>
+</html>

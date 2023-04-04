@@ -25,14 +25,18 @@ from studentSummary.views import student_summary_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    #path('', include("django.contrib.auth.urls")),
+    
     path('', include('login.urls')),
     path('application/', application_view),
     path('add_course/', instructor_add_course_view),
     path('admin_summary/', admin_summary_view),
     path('instructor_summary/', instructor_summary_view),
     path('student_summary/', student_summary_view),
+<<<<<<< Updated upstream
     path('send_email/', send_email, name = 'send_email')
+=======
+    path('', include("django.contrib.auth.urls")),
+>>>>>>> Stashed changes
 ]
 
 
