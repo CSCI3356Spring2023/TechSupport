@@ -11,9 +11,9 @@ class CustomUser(AbstractUser):
     )
     role = models.CharField(max_length=1, choices=ROLE_CHOICES)
     
-    enrolled_courses = models.PositiveIntegerField(default=0)
+    applications = models.PositiveIntegerField(default=0)
 
-    def increment_enrolled_courses(self):
+    def increment_applications(self):
         if self.role == 'S':
-            self.enrolled_courses += 1
+            self.applications += 1
             self.save()
