@@ -3,6 +3,11 @@ from django.core.validators import MinValueValidator
 
 # Create your models here.
 class Application(models.Model):
+    
+    first_name = models.CharField(max_length=255, default=None)
+    last_name = models.CharField(max_length=255, default=None)
+    eagle_id = models.CharField(max_length=255, default=None)
+    
     GRADES = (
         ('--', '--'),
         ('a', 'A'),
@@ -18,6 +23,16 @@ class Application(models.Model):
         ('f', 'F'),
         ('n/a', 'N/A')
     )
+    
+    GRAD = (
+        ('--', '--'),
+        ('2023','2023'),
+        ('2024', '2024'),
+        ('2025', '2025'),
+        ('2026', '2026')
+    )
+    grad = models.CharField(max_length=50, choices=GRAD, default='')
+
     past_course = models.CharField(choices=[('yes', 'Yes'),('no', 'No')], max_length=50, default='')
         #in form: define radioselect with class "horizontal-list"
         #in css: .horizontal-list li {
@@ -31,3 +46,5 @@ class Application(models.Model):
     other_courses = models.CharField(max_length=800, default=None)
         #in form: define textarea with attr 5 rows
     misc_information = models.CharField(max_length=800, default=None)
+
+

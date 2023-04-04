@@ -22,6 +22,18 @@
                   This course covers the basic life cycle of software development: requirements, design, implementation, testing, and production release. Students will learn the theory related to software engineering, but they will also learn hands-on how to create their own software. 
                 </p>
                 <div class="form-group mb-4">
+                  {{ form.first_name.label_tag }} {{ form.first_name }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.last_name.label_tag }} {{ form.last_name }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.eagle_id.label_tag }} {{ form.eagle_id }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.grad.label_tag }} {{ form.grad }}
+                </div>
+                <div class="form-group mb-4">
                   {{ form.past_course.label_tag }} {% for radio in form.past_course %}
                   <div class="form-check">{{ radio }}</div>
                   {% endfor %}

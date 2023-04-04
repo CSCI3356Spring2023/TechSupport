@@ -4,10 +4,11 @@ from .models import Application
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ('past_course', 'grade', 'hours', 'other_courses', 'misc_information')
+        fields = ('first_name', 'last_name', 'eagle_id', 'grad','past_course', 'grade', 'hours', 'other_courses', 'misc_information')
         widgets = {
             'past_course': forms.RadioSelect(attrs={'class': 'form-check-input'}),
             'grade': forms.Select(attrs={'class': 'form-select'}),
+            'grad': forms.Select(attrs={'class': 'form-select'}),
             'hours': forms.NumberInput(attrs={'class': 'form-control', 'min': 0}),
             'other_courses': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'misc_information': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
@@ -22,3 +23,7 @@ class ApplicationForm(forms.ModelForm):
         self.fields['hours'].label = 'How many hours can you commit to the position?'
         self.fields['other_courses'].label = 'Other relevant CS courses'
         self.fields['misc_information'].label = 'Answers to extra questions, misc. information'
+        self.fields['first_name'].label = 'First name'
+        self.fields['last_name'].label = 'Last name'
+        self.fields['eagle_id'].label = 'Eagle ID'
+        self.fields['grad'].label = 'Graduation year'
