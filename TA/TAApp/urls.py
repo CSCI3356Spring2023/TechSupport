@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 from application.views import application_view
 from InstructorAddCourse.views import instructor_add_course_view
-from adminSummary.views import admin_summary_view
+from adminSummary.views import admin_summary_view, send_email
 from instructorSummary.views import instructor_summary_view
 from studentSummary.views import student_summary_view
 
@@ -31,7 +31,8 @@ urlpatterns = [
     path('add_course/', instructor_add_course_view),
     path('admin_summary/', admin_summary_view),
     path('instructor_summary/', instructor_summary_view),
-    path('student_summary/', student_summary_view)
+    path('student_summary/', student_summary_view),
+    path('send_email/', send_email, name = 'send_email')
 ]
 
 
