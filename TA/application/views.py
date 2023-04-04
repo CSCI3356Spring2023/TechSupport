@@ -14,7 +14,7 @@ def application_view(request):
                 form.save()
                 return render(request, 'success.html')
             else:
-                messages.error(request, "You cannot apply to more than 5 courses as a student.")
+                form.add_error(None, "You have already applied to 5 courses (maximum number of applications)")
         else:
             form = ApplicationForm()
         return render(request, 'application.html', {'form': form})
