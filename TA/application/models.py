@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator
 # Create your models here.
 class Application(models.Model):
     
+    course_number = models.CharField(max_length=255, default=None)
     first_name = models.CharField(max_length=255, default=None)
     last_name = models.CharField(max_length=255, default=None)
     eagle_id = models.CharField(max_length=255, default=None)
