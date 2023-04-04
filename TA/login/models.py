@@ -13,6 +13,12 @@ class CustomUser(AbstractUser):
     
     applications = models.PositiveIntegerField(default=0)
 
+    def can_apply(self):
+        if self.role == 'S' and self.applications >= 5:
+            return False
+        else:
+            return True
+    
     def increment_applications(self):
         if self.role == 'S':
             self.applications += 1

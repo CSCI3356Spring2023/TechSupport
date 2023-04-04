@@ -1,13 +1,23 @@
 from django.shortcuts import render
 from .forms import ApplicationForm
+from django.contrib import messages
+from login.models import CustomUser
 
-# Create your views here.
 def application_view(request):
     if request.method == 'POST':
         form = ApplicationForm(request.POST)
         if form.is_valid():
-            form.save()
-            return render(request, 'success.html')
+            user = CustomUser.objects.get(id=request.user.id)
+            if user.can_apply():
+                user.increment_applications()
+                user.save()
+                form.save()
+                return render(request, 'success.html')
+            else:
+                messages.error(request, "You cannot apply to more than 5 courses as a student.")
+        else:
+            form = ApplicationForm()
+        return render(request, 'application.html', {'form': form})
     else:
         form = ApplicationForm()
     return render(request, 'application.html', {'form': form})
