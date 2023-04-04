@@ -32,11 +32,7 @@ urlpatterns = [
     path('admin_summary/', admin_summary_view),
     path('instructor_summary/', instructor_summary_view),
     path('student_summary/', student_summary_view),
-<<<<<<< Updated upstream
     path('send_email/', send_email, name = 'send_email')
-=======
-    path('', include("django.contrib.auth.urls")),
->>>>>>> Stashed changes
 ]
 
 
