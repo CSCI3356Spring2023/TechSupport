@@ -40,6 +40,15 @@
           <div class="text-end">({{course_count}} items)</div>
         </div>
       </div>
+      <div class="row" id="item-row">
+        <div class="col-sm">
+          <div class ="text-end">
+            <a href="{% url 'send_email' %}">
+              <button type="button" class="btn btn-primary">Send Email</button>
+            </a>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-3">
           <div class="filter-box">
@@ -97,10 +106,15 @@
               {% for course in course_objects %}
               <tr>
                 <td>{{ course.course_name }}<br />{{ course.course_number}}</td>
-                <td class = "text-end">{{ course.course_instructor }}</td>
-                <td class = "text-center">?/{{ course.num_ta_needed }}</td>
-                <td class = "text-center"><button id="modify-btn">Modify</button></td>
+                <td class="text-end">{{ course.course_instructor }}</td>
+                <td class="text-center">
+                  {{course.curr_num_ta}}/{{ course.num_ta_needed }}
+                </td>
+                <td class="text-center">
+                  <button type="button" class="btn btn-primary">Modify</button>
+                </td>
               </tr>
+
               {% endfor %}
             </tbody>
           </table>

@@ -19,6 +19,9 @@
                                 <div>{{ course.course_description }}</div>
                                 <div class="mt-4">Status: <strong style="color: green;">Open for Application</strong></div>
                                 <button class="btn btn-light">Application Forms</button>
+                                {% for application in application_objects %}
+                                <div>Grade: {{ application.grade }}</div>
+                                {% endfor %}
                             </div>
                             </div>
                             {% endfor %}
