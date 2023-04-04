@@ -101,7 +101,7 @@
 
                 <td class = "text-start">{{ course.course_description }}</td>
                 <td class = "text-center">{{ course.course_instructor }}</td>
-                <td class = "text-center">?/{{ course.num_ta_needed }}</td>
+                <td class = "text-center">{{ course.curr_num_ta }}/{{ course.num_ta_needed }}</td>
               </tr>
               {% endfor %}
             </tbody>
