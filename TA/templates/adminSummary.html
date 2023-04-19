@@ -7,31 +7,50 @@
     <link rel="stylesheet" href="{% static 'adminSummary.css' %}" />
   </head>
   <body>
+    <!--<form method="get">
+      <input type="text" name="q" placeholder="Search...">
+      <br>
+      <input type="checkbox" name="my_checkbox" value="1"> My Checkbox
+      <br>
+      <input type="submit" value="Filter">
+  </form>-->
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-2">
-          <div id="search-box">
-            <input type="text" id="search-input" placeholder="Search" />
+        <div class="col-md-4">
+          <form method="get">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                id="search"
+                name="q"
+                placeholder="Search..."
+              />
+              <div class="input-group-btn input-space">
+                <button type="submit" class="btn btn-primary">
+                  Apply Search
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <div class="applied-filters d-flex align-items-center">
+            <label>
+              <input type="checkbox" name="category" value="shoes" checked />
+              Spring 2023
+            </label>
+            <label>
+              <input type="checkbox" name="color" value="red" checked />
+              CSCI
+            </label>
           </div>
         </div>
-        <div class="col-sm-2">
-          <button id="apply-to-search-btn">Apply to Search</button>
-        </div>
-        <div class="col-sm">
-          <div class="applied-filters">
-            <label
-              ><input type="checkbox" name="category" value="shoes" checked />
-              Spring 2023</label
-            >
-            <label
-              ><input type="checkbox" name="color" value="red" checked />
-              CSCI</label
-            >
-          </div>
-        </div>
-        <div class="col-sm-2">
+        <div class="col-md-4">
           <div class="text-end">
-            <button id="add-posting-btn">Add Posting</button>
+            <button id="add-posting-btn" class="btn btn-primary">
+              Add Posting
+            </button>
           </div>
         </div>
       </div>
@@ -42,7 +61,7 @@
       </div>
       <div class="row" id="item-row">
         <div class="col-sm">
-          <div class ="text-end">
+          <div class="text-end">
             <a href="{% url 'send_email' %}">
               <button type="button" class="btn btn-primary">Send Email</button>
             </a>
@@ -55,12 +74,12 @@
             <div class="filter-group">
               <h3>Term</h3>
               <label
-                ><input type="checkbox" name="category" value="shoes" />
-                Spring 2023</label
+                ><input type="checkbox" name="category" value="shoes" /> Spring
+                2023</label
               >
               <label
-                ><input type="checkbox" name="category" value="clothing" />
-                Fall 2024</label
+                ><input type="checkbox" name="category" value="clothing" /> Fall
+                2024</label
               >
               <label
                 ><input type="checkbox" name="category" value="accessories" />
