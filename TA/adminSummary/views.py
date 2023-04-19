@@ -5,12 +5,14 @@ from InstructorAddCourse.models import InstructorAddCourse
 def admin_summary_view(response):
     course_objects = InstructorAddCourse.objects.all()
     query = response.GET.get('q')
+    applied_filters = []
     if query:
         course_objects = course_objects.filter(course_name__icontains=query)
+        applied_filters.append(('q', response.GET.get('q')))
     if response.GET.get('my_checkbox'):
         course_objects = course_objects.filter(has_discussion=True)
     course_count = course_objects.count()
-    context = {'course_objects': course_objects, 'course_count': course_count}
+    context = {'course_objects': course_objects, 'course_count': course_count, 'applied_filters': applied_filters}
 
     
 
