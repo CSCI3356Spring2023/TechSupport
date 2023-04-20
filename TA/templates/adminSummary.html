@@ -1,4 +1,4 @@
-{% extends 'appbase.html' %} {% block content %} {% load static %}
+{% extends 'appbase.html' %} {% block content %} {% load static %} {% load static admin_templatetags %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,17 +7,10 @@
     <link rel="stylesheet" href="{% static 'adminSummary.css' %}" />
   </head>
   <body>
-    <!--<form method="get">
-      <input type="text" name="q" placeholder="Search...">
-      <br>
-      <input type="checkbox" name="my_checkbox" value="1"> My Checkbox
-      <br>
-      <input type="submit" value="Filter">
-  </form>-->
     <div class="container-fluid">
+      <form method="get">
       <div class="row">
         <div class="col-md-4">
-          <form method="get">
             <div class="input-group">
               <input
                 type="text"
@@ -32,13 +25,12 @@
                 </button>
               </div>
             </div>
-          </form>
         </div>
         <div class="col-md-4">
           <div class="applied-filters d-flex align-items-center">
             {% for filter_name, filter_value in applied_filters %}
                 <label>
-                    <input type="checkbox" name="{{ filter_name }}" value="{{ filter_value }}" checked />
+                    <input type="checkbox" name = "{{filter_name}}" value="{{ filter_value }}" checked />
                     {{ filter_value }}
                 </label>
             {% endfor %}
@@ -99,13 +91,15 @@
             </div>
             <div class="filter-group">
               <h3>Status</h3>
-              <label
-                ><input type="checkbox" name="size" value="small" /> Open</label
-              >
-              <label
-                ><input type="checkbox" name="size" value="medium" />
-                Closed</label
-              >
+              <label>
+                <input type="checkbox" name="status" value="Open"/> Open
+            </label>
+            <label>
+                <input type="checkbox" name="status" value="Closed"/> Closed
+            </label>
+              <!--<label>
+                <input type="checkbox" name="status" value="" {% if request.GET.status == "" %}checked{% endif %} /> All
+              </label>-->
             </div>
           </div>
         </div>
@@ -137,6 +131,7 @@
           </table>
         </div>
       </div>
+    </form>
     </div>
   </body>
 </html>
