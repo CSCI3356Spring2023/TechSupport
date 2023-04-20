@@ -1,6 +1,10 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 
+
+def get_default_term():
+	return "Spring 2023"
+
 # Create your models here.
 class InstructorAddCourse(models.Model):
 	course_name = models.CharField(max_length=255)
@@ -14,5 +18,4 @@ class InstructorAddCourse(models.Model):
 	graded_meeting = models.CharField(choices=[('yes', 'Yes'),('no', 'No')], max_length=50, default='')
 	office_hours = models.DecimalField(max_digits=2, decimal_places=0, validators=[MinValueValidator(0)], default=0)
 	other_info = models.CharField(max_length=800, default=None)
-
-	
+	term = models.CharField(default=get_default_term(), max_length=100)

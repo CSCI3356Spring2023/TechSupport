@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from InstructorAddCourse.models import InstructorAddCourse
 
+term_keys = ['Spring 2023', 'Fall 2024', 'Spring 2024']
 dept_keys = ['CSCI', 'ECON', 'PHIL']
 status_keys = ['Open', 'Closed']
 
+
 def admin_summary_view(response):
     search_query = response.GET.get('q', '')
+    term_filter = response.GET.get('term', '')
     status_filter = response.GET.get('status', '')
     dept_filter = response.GET.get('dept-code', '')
 
@@ -16,6 +19,12 @@ def admin_summary_view(response):
         course_objects = course_objects.filter(
             course_name__icontains=search_query)
         applied_filters.append(('q', search_query))
+
+    if term_filter:
+        if term_filter in term_keys:
+            course_objects = [course for course in course_objects if get_term(
+                course) == term_filter]
+            applied_filters.append(('term', term_filter))
 
     if dept_filter:
         if dept_filter in dept_keys:
@@ -31,13 +40,15 @@ def admin_summary_view(response):
     else:
         applied_filters = [f for f in applied_filters if f[0] != 'status']
 
-    if response.GET.get('my_checkbox'):
-        course_objects = course_objects.filter(has_discussion=True)
     course_count = len(course_objects)
     context = {'course_objects': course_objects,
                'course_count': course_count, 'applied_filters': applied_filters}
 
     return render(response, "adminSummary.html", context)
+
+
+def get_term(course):
+    return course.term
 
 
 def get_dept(course):
@@ -46,6 +57,7 @@ def get_dept(course):
         if i.isalpha():
             dept_code = "".join([dept_code, i])
     return dept_code
+
 
 def get_status(course):
     return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
