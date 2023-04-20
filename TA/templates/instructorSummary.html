@@ -107,8 +107,12 @@
                                 <div>{{ course.course_description }}</div>
                                 <div class="mt-4">Status: <strong style="color: green;">Open for Application</strong></div>
                                 <button class="btn btn-light">Application Forms</button>
+                                <div></div>
                                 {% for application in application_objects %}
-                                <div>Grade: {{ application.grade }}</div>
+                                  {% if course.course_number == application.course_number %}
+                                    <div>Applicant Name: {{ application.first_name }} {{ application.last_name }}</div>
+                                    <div>Grade: {{ application.grade }}</div>
+                                  {% endif %}
                                 {% endfor %}
                             </div>
                             </div>
