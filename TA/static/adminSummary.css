@@ -1,21 +1,18 @@
 body {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  height: 100%;
+}
 
 .item-row {
   height: 25px;
 }
 
 .table-bordered {
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .filter-box {
   padding: 20px;
-  border: 2px solid black;
+  border: 1px solid black;
   background-color: #f8f9fa;
   border-radius: 10px;
 }
@@ -48,4 +45,23 @@ body {
 
 .input-group-btn.input-space {
   padding-left: 15px;
+}
+
+.form-control {
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 5px;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0, 123, 255, 0.1);
 }
