@@ -36,7 +36,14 @@ body {
 }
 
 .applied-filters input[type="checkbox"] {
-  margin-right: 5px;
+  margin-right: 1px;
+}
+
+.applied-filter-label {
+  background-color: #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
 [class*="col"] {

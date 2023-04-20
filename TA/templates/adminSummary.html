@@ -29,7 +29,7 @@
         <div class="col-md-4">
           <div class="applied-filters d-flex align-items-center">
             {% for filter_name, filter_value in applied_filters %}
-                <label>
+                <label class="applied-filter-label">
                     <input type="checkbox" name = "{{filter_name}}" value="{{ filter_value }}" checked />
                     {{ filter_value }}
                 </label>
