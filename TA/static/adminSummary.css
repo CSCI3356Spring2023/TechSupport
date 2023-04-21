@@ -6,13 +6,26 @@ body {
   height: 25px;
 }
 
-.table-bordered {
-  border: 1px solid black;
+table {
+  background: white;
+  border: 1px solid #c3c3c3;
+  border-radius: 5px;
+  width: 50%;
+  border-spacing: 0px;
+  border-collapse: separate;
+}
+table th {
+  font-weight: 600;
+  font-size: 1.1em;
+  background: #c6c6c6;
+}
+table td {
+  background: transparent;
 }
 
 .filter-box {
   padding: 20px;
-  border: 1px solid black;
+  border: 1px solid #c3c3c3;
   background-color: #f8f9fa;
   border-radius: 10px;
 }
