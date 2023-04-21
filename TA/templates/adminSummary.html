@@ -119,7 +119,7 @@
                   {{course.curr_num_ta}}/{{ course.num_ta_needed }}
                 </td>
                 <td class="text-center">
-                  <button type="button" class="btn btn-primary">Modify</button>
+                  <a href="{% url 'edit_course' course.id %}" class="btn btn-primary">Modify</a>
                 </td>
               </tr>
 

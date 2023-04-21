@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from InstructorAddCourse.models import InstructorAddCourse
 
@@ -72,3 +72,25 @@ def send_email(response):
         fail_silently=False,
     )
     return redirect(admin_summary_view)
+
+def edit_course(request, course_id):
+    course = get_object_or_404(InstructorAddCourse, id=course_id)
+    if request.method == "POST":
+
+        course.course_name = request.POST['course_name']
+        course.course_number = request.POST['course_number']
+        course.course_instructor = request.POST['course_instructor']
+        course.course_description = request.POST['course_description']
+        course.total_time_commitment = request.POST['total_time_commitment']
+        course.has_discussion = request.POST['has_discussion']
+        course.num_ta_needed = request.POST['num_ta_needed']
+        course.curr_num_ta = request.POST['curr_num_ta']
+        course.graded_meeting = request.POST['graded_meeting']
+        course.office_hours = request.POST['office_hours']
+        course.other_info = request.POST['other_info']
+        course.term = request.POST['term']
+        
+        course.save()
+        return redirect(admin_summary_view)
+    else:
+        return render(request, "edit_course.html", {"course": course})
