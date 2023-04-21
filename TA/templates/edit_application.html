@@ -1,10 +1,13 @@
 {% extends 'appbase.html' %}
 
 {% block content %}
-  <h3>Edit Application for {{application.course_name}} {{application.course_number}}</h3>
+  <h3>Edit Application</h3>
   <form action="{% url 'edit_application' application.id %}" method="POST">
     {% csrf_token %}
     <div class="form-group">
+
+        <label for="course_name">Course Number:</label>
+        <input type="text" name="course_number" id="course_number" value="{{ application.course_number }}" class="form-control" required>
 
         <label for="course_name">First Name:</label>
         <input type="text" name="first_name" id="first_name" value="{{ application.first_name }}" class="form-control" required>

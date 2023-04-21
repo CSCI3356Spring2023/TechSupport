@@ -20,22 +20,15 @@ def student_summary_view(response):
 def apply_course(request, course_id):
     course = get_object_or_404(InstructorAddCourse, id=course_id)
     # application = Application.objects.filter(course=course, user=request.user).first()
-   
+
     if request.method == 'POST':
-        print('here1')
         form = ApplicationForm(request.POST)
-        print("form:")
-        print(form)
         if form.is_valid():
-            print('here2')
             application = form.save(commit=False)
             application.course = course
             application.save()
             return redirect(student_summary_view)
-        else: 
-            print(form.errors)
     else:
-        print("hello")
         form = ApplicationForm(initial={'course': course})
         
     return render(request, 'application.html', {'form': form, 'course': course})
@@ -45,6 +38,7 @@ def edit_application(request, application_id):
     application = get_object_or_404(Application, id=application_id)
     if request.method == "POST":
 
+        application.course_number = request.POST['course_number']
         application.first_name = request.POST['first_name']
         application.last_name = request.POST['last_name']
         application.eagle_id = request.POST['eagle_id']
