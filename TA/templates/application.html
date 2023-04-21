@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'appbase.html' %} {% block content %} {% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'application.css' %}" />
+    <title>Applying to a Course</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col offset-md-3">
+          <div class="form-group">
+              <form method="post">
+                {% csrf_token %}
+                <h2 class="border-bottom border-2 border-dark mb-4">
+                  Course Application for: 
+                </h2>
+                <h5 class="mb-4">
+                  Available positions: 
+                </h5>
+                <p class="mb-4">
+                  This course covers the basic life cycle of software development: requirements, design, implementation, testing, and production release. Students will learn the theory related to software engineering, but they will also learn hands-on how to create their own software. 
+                </p>
+                <div class="form-group mb-4">
+                  {{ form.course_number.label_tag }} {{ form.course_number }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.first_name.label_tag }} {{ form.first_name }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.last_name.label_tag }} {{ form.last_name }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.eagle_id.label_tag }} {{ form.eagle_id }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.grad.label_tag }} {{ form.grad }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.past_course.label_tag }} {% for radio in form.past_course %}
+                  <div class="form-check">{{ radio }}</div>
+                  {% endfor %}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.grade.label_tag }} {{ form.grade }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.hours.label_tag }} {{ form.hours }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.other_courses.label_tag }} {{ form.other_courses }}
+                </div>
+                <div class="form-group mb-4">
+                  {{ form.misc_information.label_tag }} {{ form.misc_information}}
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                  Submit
+                </button>
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

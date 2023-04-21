@@ -1,0 +1,50 @@
+{% extends 'appbase.html' %}
+
+{% block content %}
+  <h3>Edit Course</h3>
+  <form action="{% url 'edit_course' course.id %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="course_name">Course Name:</label>
+        <input type="text" name="course_name" id="course_name" value="{{ course.course_name }}" class="form-control" required>
+        <label for="course_name">Course Number:</label>
+        <input type="text" name="course_number" id="course_number" value="{{ course.course_number }}" class="form-control" required>
+        <label for="course_name">Course Instructor:</label>
+        <input type="text" name="course_instructor" id="course_instructor" value="{{ course.course_instructor }}" class="form-control" required>
+        <label for="course_name">Course Description:</label>
+        <input type="text" name="course_description" id="course_description" value="{{ course.course_description }}" class="form-control" required>
+    
+        <label for="total_time_commitment">Total Time Commitment (hours):</label>
+        <input type="number" name="total_time_commitment" id="total_time_commitment" value="{{ course.total_time_commitment }}" class="form-control" required>
+
+        <label for="has_discussion">Has Discussion:</label>
+        <select name="has_discussion" id="has_discussion" class="form-control" required>
+            <option value="yes" {% if course.has_discussion == 'yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if course.has_discussion == 'no' %}selected{% endif %}>No</option>
+        </select>
+
+        <label for="num_ta_needed">Number of TA's needed:</label>
+        <input type="number" name="num_ta_needed" id="num_ta_needed" value="{{ course.num_ta_needed }}" class="form-control" required>
+
+        <label for="curr_num_ta">Current Number of TA's:</label>
+        <input type="number" name="curr_num_ta" id="curr_num_ta" value="{{ course.curr_num_ta }}" class="form-control" required>
+
+        <label for="graded_meeting">Graded Meeting:</label>
+        <select name="graded_meeting" id="graded_meeting" class="form-control" required>
+            <option value="yes" {% if course.graded_meeting == 'yes' %}selected{% endif %}>Yes</option>
+            <option value="no" {% if course.graded_meeting == 'no' %}selected{% endif %}>No</option>
+        </select>
+
+        <label for="office_hours">Office Hours:</label>
+        <input type="number" name="office_hours" id="office_hours" value="{{ course.office_hours }}" class="form-control" required>
+
+        <label for="other_info">Other Information:</label>
+        <textarea name="other_info" id="other_info" class="form-control" required>{{ course.other_info }}</textarea>
+
+        <label for="term">Term:</label>
+        <input type="text" name="term" id="term" value="{{ course.term }}" class="form-control" required>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Save Changes">
+  </form>
+{% endblock %}

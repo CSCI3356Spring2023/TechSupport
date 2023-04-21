@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title>Admin Home</title>
+</head>
+<body>
+    <header>
+<h2 style="color:brown"><center>Welcome to the TA Application HomePage!</center>
+</header>
+<main>
+    {% block title %}Admin Home{% endblock %}
+    {% if user.is_authenticated %}
+        Hello {{ user.username}}!
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+</main>
+</body>
+</html>
