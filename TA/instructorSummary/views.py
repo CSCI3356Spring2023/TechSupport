@@ -50,3 +50,18 @@ def instructor_summary_view(response):
                'application_objects': application_objects,
                'applied_filters': applied_filters}
     return render(response, "instructorSummary.html", context)
+
+def get_term(course):
+    return course.term
+
+
+def get_dept(course):
+    dept_code = ""
+    for i in course.course_number:
+        if i.isalpha():
+            dept_code = "".join([dept_code, i])
+    return dept_code
+
+
+def get_status(course):
+    return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
