@@ -6,7 +6,7 @@ class ApplicationForm(forms.ModelForm):
 # 'course_name','course_number', 'description',
     class Meta:
         model = Application
-        fields = ('course_name','first_name', 'last_name', 'eagle_id', 'grad','past_course', 'grade', 'hours', 'other_courses', 'misc_information')
+        fields = ('course_name','course_number', 'description','first_name', 'last_name', 'eagle_id', 'grad','past_course', 'grade', 'hours', 'other_courses', 'misc_information')
         widgets = {
             'past_course': forms.RadioSelect(attrs={'class': 'form-check-input'}),
             'grade': forms.Select(attrs={'class': 'form-select'}),
@@ -20,6 +20,8 @@ class ApplicationForm(forms.ModelForm):
         super(ApplicationForm, self).__init__(*args, **kwargs)
 
         self.fields['course_name'].label = "Course Name"
+        self.fields['course_number'].label = "Course Number"
+        self.fields['description'].label = "Description"
         self.fields['other_courses'].required = False
         self.fields['misc_information'].required = False
         self.fields['past_course'].label = 'Have you taken this course in the past?'

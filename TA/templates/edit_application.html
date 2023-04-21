@@ -7,10 +7,17 @@
     <div class="form-group">
 
         
-        <label for="course_name">First Name:</label>
+    
+      <input type="hidden" name="course_name" value="{{ application.course_name }}">
+      <input type="hidden" name="course_number" value="{{ application.course_number }}">
+      <input type="hidden" name="description" value="{{ application.description }}">
+
+
+
+        <label for="first_name">First Name:</label>
         <input type="text" name="first_name" id="first_name" value="{{ application.first_name }}" class="form-control" required>
 
-        <label for="course_name">Last Name:</label>
+        <label for="last_name">Last Name:</label>
         <input type="text" name="last_name" id="last_name" value="{{ application.last_name }}" class="form-control" required>
 
         <label for="eagle_id">Eagle ID:</label>

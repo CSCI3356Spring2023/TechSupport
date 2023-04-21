@@ -6,12 +6,15 @@ from application.models import Application
 from login.models import CustomUser
 from application.forms import ApplicationForm
 from django.core.mail import send_mail
+from django.http import HttpResponseBadRequest
 
 term_keys = ['Spring 2023', 'Summer 2023', 'Fall 2024', 'Spring 2024']
 dept_keys = ['CSCI', 'ECON', 'PHIL', 'ARTH', 'HIST', 'ENGL', 'MATH', 'POLI']
 status_keys = ['Open', 'Closed']
 
 # Create your views here.
+
+
 
 def student_summary_view(response):
     search_query = response.GET.get('q', '')
@@ -90,8 +93,15 @@ def edit_application(request, application_id):
     if request.method == "POST":
 
 
+        course_name = request.POST.get('course_name')
+        if course_name is None:
+            return HttpResponseBadRequest('The "course_name" field is required.')
+       
+        
+
         application.course_name = request.POST['course_name']
         application.course_number = request.POST['course_number']
+        application.description = request.POST['description']
         application.first_name = request.POST['first_name']
         application.last_name = request.POST['last_name']
         application.eagle_id = request.POST['eagle_id']

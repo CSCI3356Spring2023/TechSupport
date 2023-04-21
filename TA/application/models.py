@@ -7,8 +7,8 @@ from InstructorAddCourse.models import InstructorAddCourse
 class Application(models.Model):
 
     course_name = models.CharField(max_length=200, default=None, blank = False, null=False)
-    # course_number = models.CharField(max_length=200, default=None)
-    # description = models.CharField(max_length=800, default=None)
+    course_number = models.CharField(max_length=200, default=None)
+    description = models.CharField(max_length=800, default=None)
     first_name = models.CharField(max_length=255, default=None)
     last_name = models.CharField(max_length=255, default=None)
     eagle_id = models.CharField(max_length=255, default=None)
