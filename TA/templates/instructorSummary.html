@@ -8,12 +8,16 @@
     </head>
         <body>
             <div class="container-fluid">
-
+              <form method="get">
               <div class="row">
                 <div class="col-sm-2">
-                  <div id="search-box">
-                    <input type="text" id="search-input" placeholder="Search" />
-                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="search"
+                    name="q"
+                    placeholder="Search..."
+                  />
                 </div>
                 <div class="col-sm-2">
                   <button id="apply-to-search-btn">Apply to Search</button>
@@ -120,6 +124,7 @@
                         </div>
                     </div>
                 </div>
+              </form>
             </div>
         </body>
       
