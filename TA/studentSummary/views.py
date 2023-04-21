@@ -38,7 +38,6 @@ def edit_application(request, application_id):
     application = get_object_or_404(Application, id=application_id)
     if request.method == "POST":
 
-        application.course_number = request.POST['course_number']
         application.first_name = request.POST['first_name']
         application.last_name = request.POST['last_name']
         application.eagle_id = request.POST['eagle_id']
