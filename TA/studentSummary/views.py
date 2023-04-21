@@ -17,6 +17,22 @@ def student_summary_view(response):
     return render(response, "studentSummary.html", context)
 
 
+def apply_course(request, course_id):
+    course = get_object_or_404(InstructorAddCourse, id=course_id)
+    # application = Application.objects.filter(course=course, user=request.user).first()
+
+    if request.method == 'POST':
+        form = ApplicationForm(request.POST)
+        if form.is_valid():
+            application = form.save(commit=False)
+            application.course = course
+            application.save()
+            return redirect(student_summary_view)
+    else:
+        form = ApplicationForm(initial={'course': course})
+        
+    return render(request, 'application.html', {'form': form, 'course': course})
+
 def edit_application(request, application_id):
    
     application = get_object_or_404(Application, id=application_id)
@@ -43,5 +59,7 @@ def edit_application(request, application_id):
         context = {'application': application,
                'form': form}
         return render(request, "edit_application.html", context)
+
+
 
 

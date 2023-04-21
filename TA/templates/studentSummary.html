@@ -82,6 +82,37 @@
           <table class="table table-striped table-bordered table-hover">
             <thead>
               <tr>
+                <th class="text-center" >Course</th>
+                <th class="text-center">Application</th>
+               
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              {% for course in course_objects %}
+              <tr>
+                <td class="text-center" >{{ course.course_number }} <br><br>
+                  <p>Available positions: 0 / {{ course.num_ta_needed }}</p>
+                  <p>Total hour commitment: {{ course.total_time_commitment }}</p>
+                </td>
+                <td class="text-center">
+                  <!-- {% if application %}
+                    <a href="{% url 'edit_application' application.id %}" class="btn btn-primary">Modify Application</a>
+                  {% else %} -->
+                    <!-- <input type="hidden" name="course_id" value="{{ course }}"> -->
+                    <a href="{% url 'apply_course' course.id %}" class="btn btn-primary">Apply</a>
+                  <!-- {% endif %} -->
+                </td>
+
+                
+                
+                <!-- <td class = "text-center">{{ course.curr_num_ta }}/{{ course.num_ta_needed }}</td> -->
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <table class="table table-striped table-bordered table-hover">
+            <thead>
+              <tr>
                 <th class="text-center" >Class<br />(Class Number)</th>
                 <th class="text-center">Application</th>
                
@@ -90,7 +121,7 @@
             <tbody id="table-body">
               {% for application in application_objects %}
               <tr>
-                <td class="text-center" >{{ application.course_number }}</td>
+                <td class="text-center" >{{ application.course_name }}</td>
                 <td class="text-center">
                   <a href="{% url 'edit_application' application.id %}" class="btn btn-primary">Modify</a>
                 </td>

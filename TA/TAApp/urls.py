@@ -20,8 +20,8 @@ from application.views import application_view
 from InstructorAddCourse.views import instructor_add_course_view
 from adminSummary.views import admin_summary_view, send_email, edit_course
 from instructorSummary.views import instructor_summary_view
-from studentSummary.views import student_summary_view, edit_application
-
+from studentSummary.views import student_summary_view, apply_course, edit_application
+# from studentSummary.views import student_summary_view, edit_application
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,6 +35,7 @@ urlpatterns = [
     path('send_email/', send_email, name = 'send_email'),
     path('', include("django.contrib.auth.urls")),
     path("edit_course/<int:course_id>/", edit_course, name="edit_course"),
+    path("apply_course/<int:course_id>/", apply_course, name="apply_course"),
     path("edit_application/<int:application_id>/", edit_application, name="edit_application")
 
 

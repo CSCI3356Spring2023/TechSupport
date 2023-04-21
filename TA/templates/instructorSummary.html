@@ -38,11 +38,11 @@
                   </div>
                 </div>  
               </div>
-
-       
-            
-
-
+              <div class="row" id="item-row">
+                <div class="col-sm">
+                  <div class="text-end">({{course_count}} items)</div>
+                </div>
+              </div>
 
                 <div class="row">
 
@@ -105,7 +105,7 @@
                             <div class="border border-1 border-dark rounded p-3 mt-4">
                                 <h5>Course Description</h5>
                                 <div>{{ course.course_description }}</div>
-                                <div class="mt-4">Status: <strong style="color: green;">Open for Application</strong></div>
+                                <div class="mt-4"><strong style="color: green;">Open positions:</strong> {{ course.num_ta_needed }} / {{ course.num_ta_needed}}</div>
                                 <button class="btn btn-light">Application Forms</button>
                                 <div></div>
                                 {% for application in application_objects %}

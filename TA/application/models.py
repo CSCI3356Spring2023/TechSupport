@@ -1,10 +1,10 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import User
+from InstructorAddCourse.models import InstructorAddCourse
 
 # Create your models here.
 class Application(models.Model):
-    
-    course_number = models.CharField(max_length=255, default=None)
     first_name = models.CharField(max_length=255, default=None)
     last_name = models.CharField(max_length=255, default=None)
     eagle_id = models.CharField(max_length=255, default=None)

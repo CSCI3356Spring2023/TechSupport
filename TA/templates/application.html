@@ -13,17 +13,17 @@
               <form method="post">
                 {% csrf_token %}
                 <h2 class="border-bottom border-2 border-dark mb-4">
-                  Course Application for: 
+                  {{ course.course_name }} {{ course.course_number }}
                 </h2>
-                <h5 class="mb-4">
-                  Available positions: 
-                </h5>
+                <h6 class="mb-4">
+                  Professor: {{ course.course_instructor}}
+                </h6>
                 <p class="mb-4">
-                  This course covers the basic life cycle of software development: requirements, design, implementation, testing, and production release. Students will learn the theory related to software engineering, but they will also learn hands-on how to create their own software. 
+                  {{ course.course_description }}
                 </p>
-                <div class="form-group mb-4">
-                  {{ form.course_number.label_tag }} {{ form.course_number }}
-                </div>
+                <!-- <h5 class="mb-4">
+                  Available positions: 
+                </h5> -->
                 <div class="form-group mb-4">
                   {{ form.first_name.label_tag }} {{ form.first_name }}
                 </div>
