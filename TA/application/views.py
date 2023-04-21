@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .forms import ApplicationForm
 from django.contrib import messages
 from login.models import CustomUser
+from application.models import Application
+
 
 def application_view(request):
     if request.method == 'POST':
