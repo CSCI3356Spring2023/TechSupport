@@ -46,7 +46,6 @@ def admin_summary_view(response):
 
     return render(response, "adminSummary.html", context)
 
-
 def get_term(course):
     return course.term
 
@@ -61,7 +60,6 @@ def get_dept(course):
 
 def get_status(course):
     return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
-
 
 def send_email(response):
     send_mail(

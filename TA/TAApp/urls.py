@@ -28,7 +28,7 @@ urlpatterns = [
     
     path('', include('login.urls')),
     path('application/', application_view),
-    path('add_course/', instructor_add_course_view),
+    path('add_course/', instructor_add_course_view, name = 'add_course'),
     path('admin_summary/', admin_summary_view),
     path('instructor_summary/', instructor_summary_view),
     path('student_summary/', student_summary_view),
