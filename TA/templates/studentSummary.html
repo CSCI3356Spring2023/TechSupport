@@ -84,24 +84,20 @@
               <tr>
                 <th class="text-center" >Class<br />(Class Number)</th>
                 <th class="text-center">Application</th>
-                <th class="text-center">Course Description</th>
-
-                <th class="text-center">Instructor</th>
-                <th class="text-center">Spots</th>
-            
+               
               </tr>
             </thead>
             <tbody id="table-body">
-              {% for course in course_objects %}
+              {% for application in application_objects %}
               <tr>
-                <td class="text-center" >{{ course.course_name }}<br />{{ course.course_number}}</td>
+                <td class="text-center" >{{ application.course_number }}</td>
                 <td class="text-center">
-                  <a href="{% url 'edit_course' course.id %}" class="btn btn-primary">Modify</a>
+                  <a href="{% url 'edit_application' application.id %}" class="btn btn-primary">Modify</a>
                 </td>
 
-                <td class = "text-start">{{ course.course_description }}</td>
-                <td class = "text-center">{{ course.course_instructor }}</td>
-                <td class = "text-center">{{ course.curr_num_ta }}/{{ course.num_ta_needed }}</td>
+                
+                
+                <!-- <td class = "text-center">{{ course.curr_num_ta }}/{{ course.num_ta_needed }}</td> -->
               </tr>
               {% endfor %}
             </tbody>

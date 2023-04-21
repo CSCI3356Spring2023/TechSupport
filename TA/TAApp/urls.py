@@ -35,7 +35,7 @@ urlpatterns = [
     path('send_email/', send_email, name = 'send_email'),
     path('', include("django.contrib.auth.urls")),
     path("edit_course/<int:course_id>/", edit_course, name="edit_course"),
-    path("edit_application/<int:course_id>/", edit_application, name="edit_application")
+    path("edit_application/<int:application_id>/", edit_application, name="edit_application")
 
 
 ]
