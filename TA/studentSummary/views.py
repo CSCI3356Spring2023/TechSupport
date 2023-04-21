@@ -38,6 +38,10 @@ def edit_application(request, application_id):
 
         return redirect(student_summary_view)
     else:
-        return render(request, "application.html", {"application": application})
+
+        form = ApplicationForm(request.POST)
+        context = {'application': application,
+               'form': form}
+        return render(request, "edit_application.html", context)
 
 
