@@ -1,6 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import InstructorAddCourseForm
+from InstructorAddCourse.models import InstructorAddCourse
+
 
 
 # Create your views here.
@@ -14,4 +16,3 @@ def instructor_add_course_view(request):
     else:
         form = InstructorAddCourseForm()
     return render(request, "addCoursePage.html", {'form': form})
-

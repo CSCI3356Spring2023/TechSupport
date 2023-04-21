@@ -74,7 +74,6 @@ def send_email(response):
 def edit_course(request, course_id):
     course = get_object_or_404(InstructorAddCourse, id=course_id)
     if request.method == "POST":
-
         course.course_name = request.POST['course_name']
         course.course_number = request.POST['course_number']
         course.course_instructor = request.POST['course_instructor']

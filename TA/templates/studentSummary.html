@@ -95,9 +95,9 @@
               {% for course in course_objects %}
               <tr>
                 <td class="text-center" >{{ course.course_name }}<br />{{ course.course_number}}</td>
-                <td class = "text-center"><form action="http://127.0.0.1:8000/application/">
-                        <input type="submit" value="Application Form" />
-                    </form></td>
+                <td class="text-center">
+                  <a href="{% url 'edit_course' course.id %}" class="btn btn-primary">Modify</a>
+                </td>
 
                 <td class = "text-start">{{ course.course_description }}</td>
                 <td class = "text-center">{{ course.course_instructor }}</td>
