@@ -5,6 +5,10 @@ from InstructorAddCourse.models import InstructorAddCourse
 
 # Create your models here.
 class Application(models.Model):
+
+    course_name = models.CharField(max_length=200, default=None)
+    course_number = models.CharField(max_length=200, default=None)
+    description = models.CharField(max_length=800, default=None)
     first_name = models.CharField(max_length=255, default=None)
     last_name = models.CharField(max_length=255, default=None)
     eagle_id = models.CharField(max_length=255, default=None)
@@ -47,5 +51,9 @@ class Application(models.Model):
     other_courses = models.CharField(max_length=800, default=None)
         #in form: define textarea with attr 5 rows
     misc_information = models.CharField(max_length=800, default=None)
+
+   
+
+
 
 
