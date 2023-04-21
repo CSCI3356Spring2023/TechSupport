@@ -17,8 +17,13 @@ class ApplicationForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super(ApplicationForm, self).__init__(*args, **kwargs)
-        self.fields['other_courses'].required = False
-        self.fields['misc_information'].required = False
+        
+        # self.fields['other_courses'].required = False
+        # self.fields['misc_information'].required = False
+        # self.fields['description'].required = False
+        # self.fields['course_number'].required = False
+        # self.fields['course_name'].required = False
+
         self.fields['past_course'].label = 'Have you taken this course in the past?'
         self.fields['grade'].label = 'Grade received'
         self.fields['hours'].label = 'How many hours can you commit to the position?'
@@ -31,5 +36,6 @@ class ApplicationForm(forms.ModelForm):
         self.fields['description'].label = 'Course Description'
         self.fields['course_name'].label = 'Course Name'
         self.fields['course_number'].label = 'Course Number'
+        
 
 
