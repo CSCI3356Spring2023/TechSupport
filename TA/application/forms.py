@@ -25,9 +25,9 @@ class ApplicationForm(forms.ModelForm):
         self.fields['other_courses'].required = False
         self.fields['misc_information'].required = False
         self.fields['past_course'].label = 'Have you taken this course in the past?'
-        self.fields['grade'].label = 'Grade received'
+        self.fields['grade'].label = 'If so, what grade did you receive'
         self.fields['hours'].label = 'How many hours can you commit to the position?'
-        self.fields['other_courses'].label = 'Other relevant CS courses'
+        self.fields['other_courses'].label = 'What other relevant courses have you taken?'
         self.fields['misc_information'].label = 'Answers to extra questions, misc. information'
         self.fields['first_name'].label = 'First name'
         self.fields['last_name'].label = 'Last name'

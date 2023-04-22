@@ -1,7 +1,7 @@
 {% extends 'appbase.html' %}
 
 {% block content %}
-  <h3>Edit Application for {{ application.course_name }}{{ application.course_number }}</h3>
+  <h3>Edit Application for: {{ application.course_name }} {{ application.course_number }}</h3>
   <form action="{% url 'edit_application' application.id %}" method="POST">
     {% csrf_token %}
     <div class="form-group">
