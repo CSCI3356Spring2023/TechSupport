@@ -25,7 +25,7 @@ class InstructorAddCourseForm(forms.ModelForm):
         super(InstructorAddCourseForm, self).__init__(*args, **kwargs)
     
         
-        self.fields['course_name'].label = 'Course Name'
+        self.fields['course_name'].label = 'Course Name' 
         self.fields['course_number'].label = 'Course Number'
         self.fields['course_instructor'].label = 'Course Instructor'
         self.fields['description'].label = 'Course Description'

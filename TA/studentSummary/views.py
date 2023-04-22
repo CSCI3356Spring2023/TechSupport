@@ -75,27 +75,28 @@ def apply_course(request, course_id):
 
     course = get_object_or_404(InstructorAddCourse, id=course_id)
     print("HELLO I AM RIGHT HERE")
+
     if request.method == 'POST':
         form = ApplicationForm(request.POST) 
         
+        #Form is never valid, trying to fix
         if form.is_valid():
-        # form = form.save(commit=False)
-            form.save()
-            return redirect(student_summary_view)
+            user = CustomUser.objects.get(id=request.user.id)
+            if user.can_apply():
+                user.increment_applications()
+                user.save()
+                form.save()
+                return render(request, 'success.html')
         else: 
+            print("HI I AM RIGHT HERE in the error block")
             print(form.errors)
             return render(request, 'application.html', {'form': form, 'course': course})
 
     else:
-
-        form = ApplicationForm(initial= {
-        'course_name': course.course_name,
-        'course_number': course.course_number,
-        'description': course.description
-            })
+        print("HI I AM RIGHT HERE IN THE OUTERMOST ELSE BLOCK")
     # Only create the application object after checking form validity
-        application = ApplicationForm(course_name=course.course_name, course_number=course.course_number, description=course.description)
-        return render(request, 'application.html', {'form': form, 'course': course, 'application': application})
+        form = ApplicationForm()
+        return render(request, 'application.html', {'form': form, 'course': course})
 
 
 

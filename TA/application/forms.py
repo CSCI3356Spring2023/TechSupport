@@ -9,7 +9,7 @@ class ApplicationForm(forms.ModelForm):
         fields = ('course_name','course_number', 'description','first_name', 'last_name', 'eagle_id', 'grad','past_course', 'grade', 'hours', 'other_courses', 'misc_information')
         widgets = {
 
-
+            
             'past_course': forms.RadioSelect(attrs={'class': 'form-check-input'}),
             'grade': forms.Select(attrs={'class': 'form-select'}),
             'grad': forms.Select(attrs={'class': 'form-select'}),
