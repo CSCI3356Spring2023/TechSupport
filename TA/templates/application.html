@@ -5,13 +5,18 @@
     <link rel="stylesheet" href="{% static 'application.css' %}" />
     <title>Applying to a Course</title>
   </head>
+
+
   <body>
+
     <div class="container">
       <div class="row">
         <div class="col offset-md-3">
           <div class="form-group">
+
               <form method="post">
                 {% csrf_token %}
+
                 <h2 class="border-bottom border-2 border-dark mb-4">
                   {{ course.course_name }} {{ course.course_number }}
                 </h2>
@@ -19,11 +24,25 @@
                   Professor: {{ course.course_instructor}}
                 </h6>
                 <p class="mb-4">
-                  Course Description: {{ course.course_description }}
+                  Course Description: {{ course.description }}
                 </p>
-                <!-- <h5 class="mb-4">
-                  Available positions: 
-                </h5> -->
+                <h5 class="mb-4">
+                  Available positions: {{course.num_ta_needed}}
+                </h5>
+
+
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    {% for field, errors in form.errors.items %}
+                        <strong>{{ field|title }}:</strong>
+                        {% for error in errors %}
+                            {{ error }}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+      
                 <div class="form-group mb-4">
                   {{ form.first_name.label_tag }} {{ form.first_name }}
                 </div>

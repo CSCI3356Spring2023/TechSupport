@@ -21,7 +21,7 @@ from InstructorAddCourse.views import instructor_add_course_view
 from adminSummary.views import admin_summary_view, send_email, edit_course
 from instructorSummary.views import instructor_summary_view
 from studentSummary.views import student_summary_view, apply_course, edit_application
-# from studentSummary.views import student_summary_view, edit_application
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),

@@ -18,8 +18,10 @@ def application_view(request):
             else:
                 form.add_error(None, "You have already applied to 5 courses (maximum number of applications)")
         else:
+            
             form = ApplicationForm()
         return render(request, 'application.html', {'form': form})
     else:
         form = ApplicationForm()
     return render(request, 'application.html', {'form': form})
+

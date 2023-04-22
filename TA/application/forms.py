@@ -3,11 +3,13 @@ from .models import Application
 
 class ApplicationForm(forms.ModelForm):
 
-# 'course_name','course_number', 'description',
+
     class Meta:
         model = Application
         fields = ('course_name','course_number', 'description','first_name', 'last_name', 'eagle_id', 'grad','past_course', 'grade', 'hours', 'other_courses', 'misc_information')
         widgets = {
+
+
             'past_course': forms.RadioSelect(attrs={'class': 'form-check-input'}),
             'grade': forms.Select(attrs={'class': 'form-select'}),
             'grad': forms.Select(attrs={'class': 'form-select'}),
@@ -33,5 +35,8 @@ class ApplicationForm(forms.ModelForm):
         self.fields['last_name'].label = 'Last name'
         self.fields['eagle_id'].label = 'Eagle ID'
         self.fields['grad'].label = 'Graduation year'
+        # self.fields['course_name'].required = False
+        # self.fields['course_number'].required = False
+        # self.fields['description'].required = False
 
 

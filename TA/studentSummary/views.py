@@ -72,32 +72,37 @@ def get_status(course):
     return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
 
 def apply_course(request, course_id):
-    course = get_object_or_404(InstructorAddCourse, id=course_id)
-    # application = Application.objects.filter(course=course, user=request.user).first()
 
+    course = get_object_or_404(InstructorAddCourse, id=course_id)
+    print("HELLO I AM RIGHT HERE")
     if request.method == 'POST':
-        form = ApplicationForm(request.POST)
-        if form.is_valid():
-            application = form.save(commit=False)
-            application.course = course
-            application.save()
-            return redirect(student_summary_view)
-    else:
-        form = ApplicationForm(initial={'course': course})
+        form = ApplicationForm(request.POST) 
         
-    return render(request, 'application.html', {'form': form, 'course': course})
+        if form.is_valid():
+        # form = form.save(commit=False)
+            form.save()
+            return redirect(student_summary_view)
+        else: 
+            print(form.errors)
+            return render(request, 'application.html', {'form': form, 'course': course})
+
+    else:
+
+        form = ApplicationForm(initial= {
+        'course_name': course.course_name,
+        'course_number': course.course_number,
+        'description': course.description
+            })
+    # Only create the application object after checking form validity
+        application = ApplicationForm(course_name=course.course_name, course_number=course.course_number, description=course.description)
+        return render(request, 'application.html', {'form': form, 'course': course, 'application': application})
+
+
 
 def edit_application(request, application_id):
    
     application = get_object_or_404(Application, id=application_id)
     if request.method == "POST":
-
-
-        course_name = request.POST.get('course_name')
-        if course_name is None:
-            return HttpResponseBadRequest('The "course_name" field is required.')
-       
-        
 
         application.course_name = request.POST['course_name']
         application.course_number = request.POST['course_number']
@@ -111,7 +116,6 @@ def edit_application(request, application_id):
         application.hours = request.POST['hours']
         application.other_courses = request.POST['other_courses']
         application.misc_information = request.POST['misc_information']
-        
         
         application.save()
 
