@@ -77,7 +77,7 @@ def edit_course(request, course_id):
         course.course_name = request.POST['course_name']
         course.course_number = request.POST['course_number']
         course.course_instructor = request.POST['course_instructor']
-        course.course_description = request.POST['course_description']
+        course.description = request.POST['description']
         course.total_time_commitment = request.POST['total_time_commitment']
         course.has_discussion = request.POST['has_discussion']
         course.num_ta_needed = request.POST['num_ta_needed']
