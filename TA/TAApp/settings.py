@@ -72,7 +72,7 @@ TEMPLATES = [
 
             'libraries':{
             'admin_templatetags': 'adminSummary.templatetags.admin_templatetags',
-            
+            'customfilters': 'studentSummary.templatetags.customfilters'
             }
         },
     },

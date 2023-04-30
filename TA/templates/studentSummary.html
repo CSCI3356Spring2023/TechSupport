@@ -1,4 +1,4 @@
-{% extends 'appbase.html' %} {% block content %} {% load static %}
+{% extends 'appbase.html' %} {% block content %} {% load static %} {% load static customfilters %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -135,13 +135,13 @@
                   <p>Total hour commitment: {{ course.total_time_commitment }}</p>
                 </td>
                 <td class="text-center">
-                  <!-- {% if application %}
-                    <a href="{% url 'edit_application' application.id %}" class="btn btn-primary">Modify Application</a>
-                  {% else %} -->
-                    <!-- <input type="hidden" name="course_id" value="{{ course }}"> -->
+                  {% if course|has_existing_application %}
+                    <div><strong>Already Applied</strong></div>
+                  {% else %}
+                    <input type="hidden" name="course_id" value="{{ course.id }}">
                     <a href="{% url 'apply_course' course.id %}" class="btn btn-primary">Apply</a>
-                  <!-- {% endif %} -->
-                </td>
+                  {% endif %}
+                </td> 
                 <td class="text-start">{{ course.description }}</td>
                 <td class="text-center">{{ course.course_instructor }}</td>
                 <td class="text-center">{{ course.curr_num_ta }}/{{ course.num_ta_needed }}</td>
