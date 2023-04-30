@@ -96,3 +96,8 @@ def edit_course(request, course_id):
         return redirect(admin_summary_view)
     else:
         return render(request, "edit_course.html", {"course": course})
+    
+def delete_course(request, course_id):
+    course = get_object_or_404(InstructorAddCourse, id=course_id)
+    course.delete()
+    return redirect(admin_summary_view)
