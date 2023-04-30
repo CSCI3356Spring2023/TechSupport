@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from InstructorAddCourse.models import InstructorAddCourse
+from application.models import Application
 
 
 def get_term(course):
@@ -19,8 +20,10 @@ def get_status(course):
     return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
 
 
-term_keys = InstructorAddCourse.objects.values_list('term', flat=True).distinct()
-dept_keys = sorted(list(set([get_dept(course) for course in InstructorAddCourse.objects.all()])))
+term_keys = InstructorAddCourse.objects.values_list(
+    'term', flat=True).distinct()
+dept_keys = sorted(list(set([get_dept(course)
+                   for course in InstructorAddCourse.objects.all()])))
 status_keys = ['Open', 'Closed']
 
 
@@ -57,12 +60,28 @@ def admin_summary_view(response):
     else:
         applied_filters = [f for f in applied_filters if f[0] != 'status']
 
+    applications = []
+    if 'course_number' in response.session:
+        course_number = response.session['course_number']
+        applications = Application.objects.filter(course_number=course_number)
+        del response.session['course_number']
+
     course_count = len(course_objects)
     context = {'course_objects': course_objects,
                'course_count': course_count, 'applied_filters': applied_filters,
-               'term_keys': term_keys, 'dept_keys': dept_keys}
+               'term_keys': term_keys, 'dept_keys': dept_keys,
+               'applications': applications}
 
     return render(response, "adminSummary.html", context)
+
+
+def show_applications(request):
+    if request.method == "POST":
+        course_number = request.POST['course_number']
+        request.session['course_number'] = course_number
+        return redirect(admin_summary_view)
+    else:
+        return redirect(admin_summary_view)
 
 
 def send_email(response):
@@ -96,7 +115,8 @@ def edit_course(request, course_id):
         return redirect(admin_summary_view)
     else:
         return render(request, "edit_course.html", {"course": course})
-    
+
+
 def delete_course(request, course_id):
     course = get_object_or_404(InstructorAddCourse, id=course_id)
     course.delete()
