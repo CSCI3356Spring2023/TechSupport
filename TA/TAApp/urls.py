@@ -21,12 +21,19 @@ from InstructorAddCourse.views import instructor_add_course_view
 from adminSummary.views import admin_summary_view, send_email, edit_course, delete_course
 from instructorSummary.views import instructor_summary_view
 from studentSummary.views import student_summary_view, apply_course, edit_application
+from login.views import  login_home, student_home, teacher_home, admin_home, logout, register
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     
-    path('', include('login.urls')),
+    #path('', include('login.urls')),
+    path('', login_home, name='login_home'),
+    path('student/', student_home, name='student_home'),
+    path('teacher/', teacher_home, name='teacher_home'),
+    path('admin_home/', admin_home, name='admin_home'),
+    #path('logout/', logout, name = 'logout'),
+    path('register/', register, name = 'register'),
     path('application/', application_view),
     path('add_course/', instructor_add_course_view, name = 'add_course'),
     path('admin_summary/', admin_summary_view),

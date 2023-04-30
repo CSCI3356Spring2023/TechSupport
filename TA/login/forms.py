@@ -38,7 +38,7 @@ class CustomAuthenticationForm(AuthenticationForm):
        super().__init__(*args, **kwargs)
        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Username'})
        self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Password'})
-       #self.fields['role'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Role'})
+       
 
 
    def clean(self):
