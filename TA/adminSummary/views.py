@@ -2,8 +2,25 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail
 from InstructorAddCourse.models import InstructorAddCourse
 
-term_keys = ['Spring 2023', 'Fall 2024', 'Spring 2024']
-dept_keys = ['CSCI', 'ECON', 'PHIL']
+
+def get_term(course):
+    return course.term
+
+
+def get_dept(course):
+    dept_code = ""
+    for i in course.course_number:
+        if i.isalpha():
+            dept_code = "".join([dept_code, i])
+    return dept_code
+
+
+def get_status(course):
+    return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
+
+
+term_keys = InstructorAddCourse.objects.values_list('term', flat=True).distinct()
+dept_keys = sorted(list(set([get_dept(course) for course in InstructorAddCourse.objects.all()])))
 status_keys = ['Open', 'Closed']
 
 
@@ -42,24 +59,11 @@ def admin_summary_view(response):
 
     course_count = len(course_objects)
     context = {'course_objects': course_objects,
-               'course_count': course_count, 'applied_filters': applied_filters}
+               'course_count': course_count, 'applied_filters': applied_filters,
+               'term_keys': term_keys, 'dept_keys': dept_keys}
 
     return render(response, "adminSummary.html", context)
 
-def get_term(course):
-    return course.term
-
-
-def get_dept(course):
-    dept_code = ""
-    for i in course.course_number:
-        if i.isalpha():
-            dept_code = "".join([dept_code, i])
-    return dept_code
-
-
-def get_status(course):
-    return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
 
 def send_email(response):
     send_mail(
@@ -70,6 +74,7 @@ def send_email(response):
         fail_silently=False,
     )
     return redirect(admin_summary_view)
+
 
 def edit_course(request, course_id):
     course = get_object_or_404(InstructorAddCourse, id=course_id)
@@ -86,7 +91,7 @@ def edit_course(request, course_id):
         course.office_hours = request.POST['office_hours']
         course.other_info = request.POST['other_info']
         course.term = request.POST['term']
-        
+
         course.save()
         return redirect(admin_summary_view)
     else:
