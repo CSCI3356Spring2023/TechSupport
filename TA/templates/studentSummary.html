@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="{% static 'adminSummary.css' %}" />
   </head>
   <body>
-    {% if user.is_authenticated %}
-    Hello {{ user.username }}!
-    {% endif %}
+
     <div class="container-fluid">
+      {% if user.is_authenticated %}
+        <p>Hello {{ user.username }}!</p>
+      {% endif %}
 
 
       <form method="get">

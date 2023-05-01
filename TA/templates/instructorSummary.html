@@ -9,6 +9,9 @@
         <body>
             <div class="container-fluid">
               <form method="get">
+              {% if user.is_authenticated %}
+                <div>Hello {{ user.username }}!</div>
+              {% endif %}
               <div class="row">
                 <div class="col-sm-2">
                   <input

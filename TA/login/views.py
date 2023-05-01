@@ -11,9 +11,20 @@ from .models import CustomUser
 
 @login_required
 def login_home(request):
+   print(request.method)
+   if(request.method == "GET"):
+       request.method = "POST"
    if request.method == 'POST':
-       form = CustomAuthenticationForm(request, data=request.POST)
+       form = AuthenticationForm(request = request, data=request.POST)
+       print("We are on this step")
+       print(form.data)
        if form.is_valid():
+           print("i am actually logged in")
+           print("......")
+           print("i am actually logged in")
+           print("......")
+           print("i am actually logged in")
+           print("......")
            # Get the user's role from the logged-in user object
            role = request.user.role
           
@@ -27,6 +38,10 @@ def login_home(request):
            else:
                messages.error(request, 'Invalid login credentials')
    else:
+       print("login failed")
+       print("login failed")
+       print("login failed")
+       
        form = CustomAuthenticationForm()
   
    return render(request, 'registration/login.html', {'form': form})
