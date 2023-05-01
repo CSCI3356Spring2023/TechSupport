@@ -1,0 +1,43 @@
+body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  max-width: 75%;
+  overflow-y: scroll;
+}
+
+#id_hours {
+  width: 50px;
+}
+
+#id_grade {
+  width: 70px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  width: 120px; 
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}

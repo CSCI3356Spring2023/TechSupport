@@ -1,0 +1,1 @@
+web: cd ./TA && python manage.py migrate && gunicorn TA.wsgi
