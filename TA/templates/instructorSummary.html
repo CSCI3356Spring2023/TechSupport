@@ -7,9 +7,6 @@
         <title>Instructor Courses</title>
     </head>
         <body>
-            {% if user.is_authenticated %}
-            Hello {{ user.username }}!
-            {% endif %}
             <div class="container-fluid">
               <form method="get">
               <div class="row">
@@ -35,13 +32,14 @@
                     {% endfor %}
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-sm-2">
                   <div class="text-end">
-                    <a href="{% url 'add_course' %}" id="add-posting-btn" class="btn btn-primary">
-                      Add Posting
+                    <a href="http://127.0.0.1:8000/add_course/">
+                      <button id="add-posting-btn">Add Posting</button>
                     </a>
                   </div>
-                </div>
+                </div>  
+              </div>
               <div class="row" id="item-row">
                 <div class="col-sm">
                   <div class="text-end">({{course_count}} items)</div>
