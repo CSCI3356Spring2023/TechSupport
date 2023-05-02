@@ -130,4 +130,7 @@ def edit_application(request, application_id):
 
 
 
-
+def delete_application(request, application_id):
+    course = get_object_or_404(Application, id=application_id)
+    course.delete()
+    return redirect(student_summary_view)
