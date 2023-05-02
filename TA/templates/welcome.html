@@ -1,0 +1,16 @@
+{% extends 'appbase.html' %}
+
+{% block content %}
+<div class="col-sm-6 offset-sm-3">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Welcome to the TA Application Website</h1>
+      <p>Please log in or register to continue.</p>
+      <div class="d-grid gap-2">
+        <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+        <a class="btn btn-secondary" href="{% url 'register' %}">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

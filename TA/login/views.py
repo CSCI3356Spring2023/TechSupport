@@ -9,43 +9,30 @@ from .models import CustomUser
 
 
 
-@login_required
-def login_home(request):
-   print(request.method)
-   if(request.method == "GET"):
-       request.method = "POST"
-   if request.method == 'POST':
-       form = AuthenticationForm(request = request, data=request.POST)
-       print("We are on this step")
-       print(form.data)
-       if form.is_valid():
-           print("i am actually logged in")
-           print("......")
-           print("i am actually logged in")
-           print("......")
-           print("i am actually logged in")
-           print("......")
-           # Get the user's role from the logged-in user object
-           role = request.user.role
-          
-           # Check if the user's role matches the selected role
-           if role == 'S':
-               return redirect('/student_summary')
-           elif role == 'T':
-               return redirect('/instructor_summary')
-           elif role == 'A':
-               return redirect('/admin_summary')
-           else:
-               messages.error(request, 'Invalid login credentials')
-   else:
-       print("login failed")
-       print("login failed")
-       print("login failed")
-       
-       form = CustomAuthenticationForm()
-  
-   return render(request, 'registration/login.html', {'form': form})
 
+def login_home(request):
+   
+   if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            if user.role == 'S':
+                return redirect('/student_summary')
+            elif user.role == 'T':
+                return redirect('/instructor_summary')
+            elif user.role == 'A':
+                return redirect('/admin_summary')
+        else:
+            messages.success(request, ("There Was An Error Logging In, Try Again..."))	
+            return redirect('login')
+        	
+   else:
+       return render(request, 'authenticate/login.html', {})
+
+def welcome(request):
+    return render(request, 'welcome.html')
 
 @login_required
 def student_home(request):

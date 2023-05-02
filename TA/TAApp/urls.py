@@ -21,17 +21,17 @@ from InstructorAddCourse.views import instructor_add_course_view
 from adminSummary.views import admin_summary_view, send_email, edit_course, delete_course, show_applications
 from instructorSummary.views import instructor_summary_view
 from studentSummary.views import student_summary_view, apply_course, edit_application
-from login.views import  login_home, student_home, teacher_home, admin_home, logout, register
+from login.views import  login_home, student_home, teacher_home, admin_home, logout, register, welcome
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    
-    #path('', include('login.urls')),
-    path('', login_home, name='login_home'),
-    path('student/', student_home, name='student_home'),
-    path('teacher/', teacher_home, name='teacher_home'),
-    path('admin_home/', admin_home, name='admin_home'),
+    path('', welcome, name= 'welcome'),
+    path('login/', include("django.contrib.auth.urls")),
+    path('login/', include('login.urls')),
+    #path('student/', student_home, name='student_home'),
+    #path('teacher/', teacher_home, name='teacher_home'),
+    #path('admin_home/', admin_home, name='admin_home'),
     #path('logout/', logout, name = 'logout'),
     path('register/', register, name = 'register'),
     path('application/', application_view),
@@ -40,7 +40,6 @@ urlpatterns = [
     path('instructor_summary/', instructor_summary_view),
     path('student_summary/', student_summary_view),
     path('send_email/', send_email, name = 'send_email'),
-    path('', include("django.contrib.auth.urls")),
     path("edit_course/<int:course_id>/", edit_course, name="edit_course"),
     path("apply_course/<int:course_id>/", apply_course, name="apply_course"),
     path("edit_application/<int:application_id>/", edit_application, name="edit_application"),
