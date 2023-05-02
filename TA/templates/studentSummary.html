@@ -136,7 +136,9 @@
                   <p>Total hour commitment: {{ course.total_time_commitment }}</p>
                 </td>
                 <td class="text-center">
-                  {% if course|has_existing_application %}
+                  {% if course.curr_num_ta >= course.num_ta_needed %}
+                    <div><strong>Closed</strong></div>
+                  {% elif course|has_existing_application %}
                     <div><strong>Already Applied</strong></div>
                   {% else %}
                     <input type="hidden" name="course_id" value="{{ course.id }}">
