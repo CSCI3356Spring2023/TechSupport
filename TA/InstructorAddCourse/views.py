@@ -10,9 +10,13 @@ from InstructorAddCourse.models import InstructorAddCourse
 def instructor_add_course_view(request):
     if request.method == 'POST':
         form = InstructorAddCourseForm(request.POST)
+        print("AYOOOOO")
         if form.is_valid():
+            print("FORM IS VALID")
             form.save()
             return render(request, 'success.html')
+        else:
+            print(form.errors)
     else:
         form = InstructorAddCourseForm()
     return render(request, "addCoursePage.html", {'form': form})
