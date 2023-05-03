@@ -23,10 +23,10 @@ MAJOR_CHOICES = [
 # Define choices for the cohort field
 YEAR_CHOICES = [
    ('NA', 'NA'),
-   ('Freshman', 'Freshman'),
-   ('Sophomore', 'Sophomore'),
-   ('Junior', 'Junior'),
-   ('Senior', 'Senior'),
+   ('2026', '2026'),
+   ('2025', '2025'),
+   ('2024', '2024'),
+   ('2023', '2023'),
 ]
 
 
