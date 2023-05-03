@@ -69,5 +69,7 @@ def instructor_summary_view(response):
     context = {'course_objects': course_objects,
                'course_count': course_count,
                'application_objects': applications,
-               'applied_filters': applied_filters}
+               'applied_filters': applied_filters,
+               'term_keys': term_keys,
+               'dept_keys': dept_keys}
     return render(response, "instructorSummary.html", context)
