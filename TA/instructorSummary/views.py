@@ -26,6 +26,7 @@ def instructor_summary_view(response):
     # database objects
     course_objects = InstructorAddCourse.objects.all()
     course_count = course_objects.count()
+    applications = Application.objects.all()
 
     # search terms
     search_query = response.GET.get('q', '')
@@ -58,12 +59,6 @@ def instructor_summary_view(response):
             applied_filters.append(('status', status_filter))
     else:
         applied_filters = [f for f in applied_filters if f[0] != 'status']
-
-    applications = []
-    if 'course_number' in response.session:
-        course_number = response.session['course_number']
-        applications = Application.objects.filter(course_number=course_number)
-        del response.session['course_number']
 
     
     context = {'course_objects': course_objects,

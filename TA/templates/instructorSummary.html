@@ -98,16 +98,17 @@
                             {% for course in course_objects %}
                             <div class="p-3">
                             <h4 class="border-bottom border-2 border-dark">{{ course.course_name }}&nbsp;{{ course.course_number}}</h4>
-                            <div class="border border-1 border-dark rounded p-3 mt-4">
+                            <div>
                                 <h5>Course Description</h5>
-                                <div>{{ course.course_description }}</div>
+                                <div>{{ course.description }}</div>
                                 <div class="mt-4"><strong style="color: green;">Positions filled:</strong> {{ course.curr_num_ta }} / {{ course.num_ta_needed}}</div>
                                 <button class="btn btn-light">Application Forms</button>
-                                <div></div>
                                 {% for application in application_objects %}
                                   {% if course.course_number == application.course_number %}
-                                    <div>Applicant Name: {{ application.first_name }} {{ application.last_name }}</div>
-                                    <div>Grade: {{ application.grade }}</div>
+                                    <div class="border border-1 border-dark rounded p-3 mt-4">
+                                      <div>Applicant Name: {{ application.first_name }} {{ application.last_name }}</div>
+                                      <div>Grade: {{ application.grade }}</div>
+                                    </div>
                                   {% endif %}
                                 {% endfor %}
                             </div>
