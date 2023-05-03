@@ -2,16 +2,30 @@ from django.shortcuts import render
 from InstructorAddCourse.models import InstructorAddCourse
 from application.models import Application
 
-term_keys = ['Spring 2023', 'Fall 2024', 'Spring 2024']
-dept_keys = ['CSCI', 'ECON', 'PHIL']
+def get_term(course):
+    return course.term
+
+
+def get_dept(course):
+    dept_code = ""
+    for i in course.course_number:
+        if i.isalpha():
+            dept_code = "".join([dept_code, i])
+    return dept_code
+
+def get_status(course):
+    return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
+
+term_keys = InstructorAddCourse.objects.values_list(
+    'term', flat=True).distinct()
+dept_keys = sorted(list(set([get_dept(course)
+                   for course in InstructorAddCourse.objects.all()])))
 status_keys = ['Open', 'Closed']
 
-# Create your views here.
 def instructor_summary_view(response):
     # database objects
     course_objects = InstructorAddCourse.objects.all()
     course_count = course_objects.count()
-    application_objects = Application.objects.all()
 
     # search terms
     search_query = response.GET.get('q', '')
@@ -45,25 +59,15 @@ def instructor_summary_view(response):
     else:
         applied_filters = [f for f in applied_filters if f[0] != 'status']
 
+    applications = []
+    if 'course_number' in response.session:
+        course_number = response.session['course_number']
+        applications = Application.objects.filter(course_number=course_number)
+        del response.session['course_number']
 
     
     context = {'course_objects': course_objects,
                'course_count': course_count,
-               'application_objects': application_objects,
+               'application_objects': applications,
                'applied_filters': applied_filters}
     return render(response, "instructorSummary.html", context)
-
-def get_term(course):
-    return course.term
-
-
-def get_dept(course):
-    dept_code = ""
-    for i in course.course_number:
-        if i.isalpha():
-            dept_code = "".join([dept_code, i])
-    return dept_code
-
-
-def get_status(course):
-    return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
