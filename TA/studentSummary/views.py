@@ -5,8 +5,7 @@ from InstructorAddCourse.models import InstructorAddCourse
 from application.models import Application 
 from login.models import CustomUser
 from application.forms import ApplicationForm
-from django.core.mail import send_mail
-from django.http import HttpResponseBadRequest
+from django.contrib.auth.decorators import login_required
 
 term_keys = ['Spring 2023', 'Summer 2023', 'Fall 2024', 'Spring 2024']
 dept_keys = ['CSCI', 'ECON', 'PHIL', 'ARTH', 'HIST', 'ENGL', 'MATH', 'POLI']
@@ -15,7 +14,7 @@ status_keys = ['Open', 'Closed']
 # Create your views here.
 
 
-
+@login_required
 def student_summary_view(response):
     search_query = response.GET.get('q', '')
     term_filter = response.GET.get('term', '')
@@ -52,7 +51,10 @@ def student_summary_view(response):
         applied_filters = [f for f in applied_filters if f[0] != 'status']
 
     course_count = len(course_objects)
-    application_objects = Application.objects.all
+    application_objects = Application.objects.filter(student=response.user)
+    print(f'User: {response.user}')
+    print(f'Application Objects: {application_objects}')
+
     context = {'course_objects': course_objects, 'course_count': course_count, 'application_objects': application_objects}
     return render(response, "studentSummary.html", context)
 
@@ -85,7 +87,12 @@ def apply_course(request, course_id):
             if user.can_apply():
                 user.increment_applications()
                 user.save()
-                form.save()
+                
+                application = form.save(commit=False)
+                application.student = request.user
+                print(f'Before Saving: {application}')
+                application.save()
+                print(f'Saved Application: {application}')
                 return render(request, 'success.html')
         else: 
             print("HI I AM RIGHT HERE in the error block")

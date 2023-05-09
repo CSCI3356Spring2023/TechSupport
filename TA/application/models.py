@@ -2,6 +2,7 @@ from django.db import models
 from django.core.validators import MinValueValidator
 from django.contrib.auth.models import User
 from InstructorAddCourse.models import InstructorAddCourse
+from login.models import CustomUser
 
 # Create your models here.
 class Application(models.Model):
@@ -12,6 +13,7 @@ class Application(models.Model):
     first_name = models.CharField(max_length=255, default=None)
     last_name = models.CharField(max_length=255, default=None)
     eagle_id = models.CharField(max_length=255, default=None)
+    student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     
     GRADES = (
         ('--', '--'),
