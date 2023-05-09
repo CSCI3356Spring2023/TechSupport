@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from InstructorAddCourse.models import InstructorAddCourse
+from django.contrib.auth.models import User
 from application.models import Application
+from django.contrib.auth.decorators import login_required
 
 def get_term(course):
     return course.term
@@ -69,13 +71,16 @@ status_keys = ['Open', 'Closed']
                'dept_keys': dept_keys}
     return render(response, "instructorSummary.html", context) """
 
+@login_required
 def instructor_summary_view(response):
     search_query = response.GET.get('q', '')
     term_filter = response.GET.get('term', '')
     status_filter = response.GET.get('status', '')
     dept_filter = response.GET.get('dept-code', '')
 
-    course_objects = InstructorAddCourse.objects.all()
+    current_user = response.user
+    course_objects = InstructorAddCourse.objects.filter(course_instructor=current_user)
+
     applied_filters = []
     if search_query:
         course_objects = course_objects.filter(

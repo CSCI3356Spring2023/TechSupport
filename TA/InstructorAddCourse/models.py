@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import User
 
 
 def get_default_term():
@@ -7,6 +8,7 @@ def get_default_term():
 
 # Create your models here.
 class InstructorAddCourse(models.Model):
+	course_instructor = models.ForeignKey(User, on_delete=models.CASCADE)
 	course_name = models.CharField(max_length=255)
 	course_number = models.CharField(max_length=255)
 	course_instructor = models.CharField(max_length=255)
