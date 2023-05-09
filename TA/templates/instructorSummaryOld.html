@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% extends 'appbase.html' %} {% block content %} {% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'adminSummary.css' %}" />
+        <title>Instructor Courses</title>
+    </head>
+        <body>
+            <div class="container-fluid">
+              <form method="get">
+              {% if user.is_authenticated %}
+                <div>Hello {{ user.username }}!</div>
+              {% endif %}
+              <div class="row">
+                <div class="col-sm-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="search"
+                    name="q"
+                    placeholder="Search..."
+                  />
+                </div>
+                <div class="col-sm-2">
+                  <button id="apply-to-search-btn">Apply to Search</button>
+                </div>
+                <div class="col-sm">
+                  <div class="applied-filters">
+                    {% for filter_name, filter_value in applied_filters %}
+                      <label class="applied-filter-label">
+                        <input type="checkbox" name = "{{filter_name}}" value="{{ filter_value }}" checked />
+                        {{ filter_value }}
+                      </label>
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="text-end">
+                    <a href="{% url 'add_course' %}" id="add-posting-btn" class="btn btn-primary">
+                      Add Posting
+                    </a>
+                  </div>
+                </div> 
+              </div>
+              <div class="row" id="item-row">
+                <div class="col-sm">
+                  <div class="text-end">({{course_count}} items)</div>
+                </div>
+              </div>
+
+              </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="filter-box">
+                          <div class="filter-group">
+                            <h3>Term</h3>
+                            {% for term in term_keys %}
+                              <label>
+                                <input type="checkbox" name="term" value="{{ term }}" /> {{ term }}
+                              </label>
+                            {% endfor %}
+                          </div>
+                          <div class="filter-group">
+                            <h3>Department Code</h3>
+                            {% for dept in dept_keys %}
+                              <label>
+                                <input type="checkbox" name="dept-code" value="{{ dept }}" /> {{ dept }}
+                              </label>
+                            {% endfor %}
+                          </div>
+                          <div class="filter-group">
+                            <h3>Status</h3>
+                            <label>
+                              <input type="checkbox" name="status" value="Open"/>
+                              Open
+                            </label>
+
+                            <label>
+                              <input type="checkbox" name="status" value="Closed"/>
+                              Closed
+                            </label>
+                            
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        {% for course in course_objects %}
+                        <button class="border border-1 border-dark p-2" style="width:100%">
+                            <div>{{ course.course_number}} - {{ course.course_name}}</div>
+                        </button>
+                        {% endfor %} 
+                    </div>
+
+                    <div class="col-6">
+                        <div class="border border-1 border-dark rounded p-3">
+                            {% for course in course_objects %}
+                            <div class="p-3">
+                            <h4 class="border-bottom border-2 border-dark">{{ course.course_name }}&nbsp;{{ course.course_number}}</h4>
+                            <div>
+                                <h5>Course Description</h5>
+                                <div>{{ course.description }}</div>
+                                <div class="mt-4"><strong style="color: green;">Positions filled:</strong> {{ course.curr_num_ta }} / {{ course.num_ta_needed}}</div>
+                                <button class="btn btn-light">Application Forms</button>
+                                {% for application in application_objects %}
+                                  {% if course.course_number == application.course_number %}
+                                    <div class="border border-1 border-dark rounded p-3 mt-4">
+                                      <div>Applicant Name: {{ application.first_name }} {{ application.last_name }}</div>
+                                      <div>Grade: {{ application.grade }}</div>
+                                    </div>
+                                  {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+        </body>
+      
+</html>
+{% endblock %}
