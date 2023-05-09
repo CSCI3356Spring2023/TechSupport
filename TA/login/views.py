@@ -17,15 +17,21 @@ def login_home(request):
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, user)
             if user.role == 'S':
+                login(request, user)
                 return redirect('/student_summary')
             elif user.role == 'T':
+                login(request, user)
                 return redirect('/instructor_summary')
             elif user.role == 'A':
+                login(request, user)
                 return redirect('/admin_summary')
+            else:
+                messages.success(request, ("Users must have a role to continue..."))
+                return redirect('login')
+            
         else:
-            messages.success(request, ("There Was An Error Logging In, Try Again..."))	
+            messages.success(request, ("Username or Password is incorrect, Try Again..."))	
             return redirect('login')
         	
    else:
