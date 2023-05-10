@@ -75,6 +75,13 @@
             <input type="hidden" name="course_name" value="{{ course.course_name }}">
             <input type="hidden" name="course_number" value="{{ course.course_number }}">
             <input type="hidden" name="description" value="{{ course.description }}">
+
+            <input type="hidden" name="first_name" value="{{user.first_name}}">
+            <input type="hidden" name="last_name" value="{{user.last_name}}">
+            <input type="hidden" name="eagle_id" value="{{user.eagle_id}}">
+            <input type="hidden" name="grad" value="{{user.year}}">
+
+
                 
                 <div class="form-group mb-4">
                   {{ form.past_course.label_tag }} {% for radio in form.past_course %}
