@@ -56,8 +56,10 @@ def student_summary_view(response):
     print(f'User: {response.user}')
     print(f'Application Objects: {application_objects}')
 
-    context = {'course_objects': course_objects, 'course_count': course_count, 'application_objects': application_objects, 'curr_user': curr_user}
+    context = {'course_objects': course_objects, 'course_count': course_count, 'application_objects': application_objects,
+    'term_keys': term_keys, 'dept_keys': dept_keys, 'curr_user': curr_user}
     return render(response, "studentSummary.html", context)
+
 
 def get_term(course):
     return course.term
@@ -133,6 +135,7 @@ def edit_application(request, application_id):
         context = {'application': application,
                'form': form}
         return render(request, "edit_application.html", context)
+
 
 
 

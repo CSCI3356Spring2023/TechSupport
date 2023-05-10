@@ -56,62 +56,30 @@
           <div class="filter-box">
             <div class="filter-group">
               <h3>Term</h3>
-              <label
-                ><input type="checkbox" name="term" value="Spring 2023" />
-                Spring 2023</label
-              >
-              <label
-                ><input type="checkbox" name="term" value="Summer 2023" />
-                Summer 2023</label
-              >
-              <label
-                ><input type="checkbox" name="term" value="Fall 2024" />
-                Fall 2024</label
-              >
-              <label
-                ><input type="checkbox" name="term" value="Spring 2024" />
-                Spring 2024</label
-              >
+              {% for term in term_keys %}
+              <label>
+                <input type="checkbox" name="term" value="{{ term }}" /> {{ term }}
+              </label>
+              {% endfor %}
             </div>
-
             <div class="filter-group">
               <h3>Department Code</h3>
-              <label
-                ><input type="checkbox" name="dept-code" value="CSCI" /> CSCI</label
-              >
-              <label
-                ><input type="checkbox" name="dept-code" value="ECON" /> ECON</label
-              >
-              <label
-                ><input type="checkbox" name="dept-code" value="PHIL" /> PHIL</label
-              >
-              <label
-                ><input type="checkbox" name="dept-code" value="ARTH" /> ARTH</label
-              >
-              <label
-                ><input type="checkbox" name="dept-code" value="HIST" /> HIST</label
-              >
-              <label
-                ><input type="checkbox" name="dept-code" value="ENGL" /> ENGL</label
-              >
-              <label
-                ><input type="checkbox" name="dept-code" value="MATH" /> MATH</label
-              >
-              <label
-                ><input type="checkbox" name="dept-code" value="POLI" /> POLI</label
-              >
+              {% for dept in dept_keys %}
+              <label>
+                <input type="checkbox" name="dept-code" value="{{ dept }}" /> {{ dept }}
+              </label>
+              {% endfor %}
             </div>
-
+            
             <div class="filter-group">
               <h3>Status</h3>
               <label>
-                <input type="checkbox" name="status" value="Open" /> Open
-              </label>
-              <label>
-                <input type="checkbox" name="status" value="Closed" /> Closed
-                </label>
+                <input type="checkbox" name="status" value="Open"/> Open
+            </label>
+            <label>
+                <input type="checkbox" name="status" value="Closed"/> Closed
+            </label>
             </div>
-
           </div>
         </div>
 
