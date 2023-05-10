@@ -5,8 +5,8 @@ from application.models import Application
 register = template.Library()
 
 @register.filter
-def has_existing_application(course):
-    applications = Application.objects.all()
+def has_existing_application(course, user):
+    applications = Application.objects.filter(student=user)
     courses = InstructorAddCourse.objects.all()
     for application in applications:
         for course_obj in courses:

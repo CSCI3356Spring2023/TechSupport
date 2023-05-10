@@ -52,10 +52,11 @@ def student_summary_view(response):
 
     course_count = len(course_objects)
     application_objects = Application.objects.filter(student=response.user)
+    curr_user = response.user
     print(f'User: {response.user}')
     print(f'Application Objects: {application_objects}')
 
-    context = {'course_objects': course_objects, 'course_count': course_count, 'application_objects': application_objects}
+    context = {'course_objects': course_objects, 'course_count': course_count, 'application_objects': application_objects, 'curr_user': curr_user}
     return render(response, "studentSummary.html", context)
 
 def get_term(course):

@@ -142,7 +142,7 @@
                 <td class="text-center">
                   {% if course.curr_num_ta >= course.num_ta_needed %}
                     <div><strong>Closed</strong></div>
-                  {% elif course|has_existing_application %}
+                  {% elif course|has_existing_application:curr_user %}
                     <div><strong>Already Applied</strong></div>
                   {% else %}
                     <input type="hidden" name="course_id" value="{{ course.id }}">
