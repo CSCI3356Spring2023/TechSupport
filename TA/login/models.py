@@ -15,8 +15,8 @@ class CustomUser(AbstractUser):
 
 
    applications = models.PositiveIntegerField(default=0)
-
-
+   first_name = models.CharField(max_length=100, blank=False)
+   last_name = models.CharField(max_length = 100, blank=False)
    major = models.CharField(max_length=100, blank=True)
    eagle_id = models.CharField(max_length=8, blank=True)
    year = models.CharField(max_length=20, blank=True)

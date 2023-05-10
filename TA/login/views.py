@@ -40,22 +40,6 @@ def login_home(request):
 def welcome(request):
     return render(request, 'welcome.html')
 
-@login_required
-def student_home(request):
-   return render(request, 'student_home.html')
-
-
-@login_required
-def teacher_home(request):
-   return render(request, 'teacher_home.html')
-
-
-@login_required
-def admin_home(request):
-   return render(request, 'admin_home.html')
-
-
-
 
 def register(request):
    if request.method == 'POST':
@@ -64,6 +48,8 @@ def register(request):
            username = form.cleaned_data.get('username')
            password = form.cleaned_data.get('password1')
            role = form.cleaned_data.get('role')
+           first_name = form.cleaned_data.get('first_name')
+           last_name = form.cleaned_data.get('last_name')
            major = form.cleaned_data.get('major')
            eagle_id = form.cleaned_data.get('eagle_id')
            year = form.cleaned_data.get('year')
@@ -77,6 +63,8 @@ def register(request):
                role=role,  # Set the user's role based on the selected role
                major = major,
                eagle_id = eagle_id,
+               first_name = first_name,
+               last_name = last_name,
                year = year,
            )
 

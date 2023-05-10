@@ -21,7 +21,7 @@ from InstructorAddCourse.views import instructor_add_course_view
 from adminSummary.views import admin_summary_view, send_email, edit_course, delete_course, show_applications
 from instructorSummary.views import instructor_summary_view, instructor_show_applications
 from studentSummary.views import student_summary_view, apply_course, edit_application, delete_application
-from login.views import  login_home, student_home, teacher_home, admin_home, logout, register, welcome
+from login.views import  login_home, logout, register, welcome
 
 
 urlpatterns = [
@@ -29,9 +29,6 @@ urlpatterns = [
     path('', welcome, name= 'welcome'),
     path('login/', include("django.contrib.auth.urls")),
     path('login/', include('login.urls')),
-    #path('student/', student_home, name='student_home'),
-    #path('teacher/', teacher_home, name='teacher_home'),
-    #path('admin_home/', admin_home, name='admin_home'),
     #path('logout/', logout, name = 'logout'),
     path('register/', register, name = 'register'),
     path('application/', application_view),
