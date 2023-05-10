@@ -6,12 +6,28 @@ from application.models import Application
 from login.models import CustomUser
 from application.forms import ApplicationForm
 from django.contrib.auth.decorators import login_required
-
-term_keys = ['Spring 2023', 'Summer 2023', 'Fall 2024', 'Spring 2024']
-dept_keys = ['CSCI', 'ECON', 'PHIL', 'ARTH', 'HIST', 'ENGL', 'MATH', 'POLI']
-status_keys = ['Open', 'Closed']
+from django.core.mail import send_mail
 
 # Create your views here.
+
+def get_term(course):
+    return course.term
+
+def get_dept(course):
+    dept_code = ""
+    for i in course.course_number:
+        if i.isalpha():
+            dept_code = "".join([dept_code, i])
+    return dept_code
+
+def get_status(course):
+    return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
+
+term_keys = InstructorAddCourse.objects.values_list(
+    'term', flat=True).distinct()
+dept_keys = sorted(list(set([get_dept(course)
+                   for course in InstructorAddCourse.objects.all()])))
+status_keys = ['Open', 'Closed']
 
 
 @login_required
@@ -58,23 +74,9 @@ def student_summary_view(response):
 
     context = {'course_objects': course_objects, 'course_count': course_count, 'application_objects': application_objects,
     'term_keys': term_keys, 'dept_keys': dept_keys, 'curr_user': curr_user}
+
     return render(response, "studentSummary.html", context)
 
-
-def get_term(course):
-    return course.term
-
-
-def get_dept(course):
-    dept_code = ""
-    for i in course.course_number:
-        if i.isalpha():
-            dept_code = "".join([dept_code, i])
-    return dept_code
-
-
-def get_status(course):
-    return "Open" if course.curr_num_ta < course.num_ta_needed else "Closed"
 
 def apply_course(request, course_id):
 
@@ -135,8 +137,6 @@ def edit_application(request, application_id):
         context = {'application': application,
                'form': form}
         return render(request, "edit_application.html", context)
-
-
 
 
 def delete_application(request, application_id):
