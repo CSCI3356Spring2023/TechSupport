@@ -14,7 +14,7 @@ def instructor_add_course_view(request):
             course = form.save(commit=False)
             course.course_instructor = request.user
             course.save()
-            return render(request, 'success.html')
+            return render(request, 'instructor_success.html')
         else:
             print(form.errors)
     else:
