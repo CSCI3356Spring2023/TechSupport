@@ -30,6 +30,24 @@
                   Available positions: {{course.num_ta_needed}}
                 </h5>
 
+                </p>
+                </h7 class="mb-4">
+                  First Name: {{user.first_name}}
+                </h7>
+                </p>
+                </h8 class="mb-4">
+                  Last Name: {{user.last_name}}
+                </h8>
+                </p>
+                </h8 class="mb-4">
+                  Eagle ID: {{user.eagle_id}}
+                </h8>
+                </p>
+                </h8 class="mb-4">
+                  Grad Year: {{user.year}}
+                </h8>
+                </p>
+
 
                 {% if form.errors %}
                 <div class="alert alert-danger">
@@ -58,21 +76,9 @@
             <input type="hidden" name="course_number" value="{{ course.course_number }}">
             <input type="hidden" name="description" value="{{ course.description }}">
 
-                <div class="form-group mb-4">
-                  {{ form.first_name.label_tag }} {{ form.first_name }}
-                </div>
-                <div class="form-group mb-4">
-                  {{ form.last_name.label_tag }} {{ form.last_name }}
-                </div>
-                <div class="form-group mb-4">
-                  {{ form.eagle_id.label_tag }} {{ form.eagle_id }}
-                </div>
 
 
-
-                <div class="form-group mb-4">
-                  {{ form.grad.label_tag }} {{ form.grad }}
-                </div>
+                
                 <div class="form-group mb-4">
                   {{ form.past_course.label_tag }} {% for radio in form.past_course %}
                   <div class="form-check">{{ radio }}</div>
