@@ -76,7 +76,6 @@ def get_status(course):
 def apply_course(request, course_id):
 
     course = get_object_or_404(InstructorAddCourse, id=course_id)
-    print("HELLO I AM RIGHT HERE")
 
     if request.method == 'POST':
         form = ApplicationForm(request.POST) 
@@ -95,12 +94,11 @@ def apply_course(request, course_id):
                 print(f'Saved Application: {application}')
                 return render(request, 'success.html')
         else: 
-            print("HI I AM RIGHT HERE in the error block")
             print(form.errors)
             return render(request, 'application.html', {'form': form, 'course': course})
 
     else:
-        print("HI I AM RIGHT HERE IN THE OUTERMOST ELSE BLOCK")
+      
     # Only create the application object after checking form validity
         form = ApplicationForm()
         return render(request, 'application.html', {'form': form, 'course': course})
