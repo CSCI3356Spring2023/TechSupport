@@ -61,7 +61,7 @@ def instructor_summary_view(response):
     applications = []
     if 'course_number' in response.session:
         course_number = response.session['course_number']
-        applications = Application.objects.filter(course_number=course_number)
+        applications = Application.objects.filter(course_number=course_number, is_approved=False)
         del response.session['course_number']
 
     course_count = len(course_objects)
@@ -83,6 +83,10 @@ def instructor_show_applications(request):
 @require_POST
 def approve_application(request, application_id):
     application = get_object_or_404(Application, id=application_id)
+    course = InstructorAddCourse.objects.get(course_number=application.course_number)
+    # increment the curr_num_ta field
+    course.curr_num_ta += 1
+    course.save()
     application.is_approved = True
     application.save()
 
