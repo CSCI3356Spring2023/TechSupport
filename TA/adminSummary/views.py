@@ -112,8 +112,9 @@ def edit_course(request, course_id):
         course.term = request.POST['term']
 
         course.save()
-        return redirect(admin_summary_view)
+        return redirect(request.session.get('previous_url', '/'))
     else:
+        request.session['previous_url'] = request.META.get('HTTP_REFERER', '/')
         return render(request, "edit_course.html", {"course": course})
 
 
