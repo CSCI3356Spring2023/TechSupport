@@ -7,6 +7,8 @@ from login.models import CustomUser
 from application.forms import ApplicationForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 
@@ -130,9 +132,9 @@ def edit_application(request, application_id):
         
         application.save()
 
-        return redirect(student_summary_view)
+        return redirect(request.session.get('previous_url', '/'))
     else:
-
+        request.session['previous_url'] = request.META.get('HTTP_REFERER', '/')
         form = ApplicationForm(request.POST)
         context = {'application': application,
                'form': form}
