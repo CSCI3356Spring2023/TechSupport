@@ -53,15 +53,6 @@
           <div class="text-end">({{course_count}} items)</div>
         </div>
       </div>
-      <div class="row" id="item-row">
-        <div class="col-sm">
-          <div class="text-end">
-            <a href="{% url 'send_email' %}">
-              <button type="button" class="btn btn-primary">Send Email</button>
-            </a>
-          </div>
-        </div>
-      </div>
       <div class="row">
         <div class="col-sm-3">
           <div class="filter-box">
@@ -150,7 +141,21 @@
               <td>{{ application.course_number }}</td>
               <td>{{ application.first_name }} {{application.last_name }}</td>
               <td class="text-center">
-                <a href="{% url 'edit_application' application.id %}" class="btn btn-primary">Modify</a>
+                {% if not application.is_approved %}
+                  <a href="{% url 'edit_application' application.id %}" class="btn btn-primary">View</a>
+                  <form method="post" action="{% url 'approve_application' application.id %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-success">Approve</button>
+                  </form>
+                {% else %}
+                  {% if application.student_response == 'P' %}
+                    Pending
+                    {% elif application.student_response == 'A' %}
+                    Accepted
+                    {% elif application.student_response == 'D' %}
+                    Declined
+                    {% endif %}
+                {% endif %}
               </td>
             </tr>
             {% endfor %}

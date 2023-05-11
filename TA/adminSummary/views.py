@@ -63,7 +63,7 @@ def admin_summary_view(response):
     applications = []
     if 'course_number' in response.session:
         course_number = response.session['course_number']
-        applications = Application.objects.filter(course_number=course_number)
+        applications = Application.objects.filter(course_number=course_number).exclude(student_response='A')
         del response.session['course_number']
 
     course_count = len(course_objects)

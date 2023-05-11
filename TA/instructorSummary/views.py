@@ -83,13 +83,14 @@ def instructor_show_applications(request):
 
 @require_POST
 def approve_application(request, application_id):
+    request.session['previous_url'] = request.META.get('HTTP_REFERER', '/')
     application = get_object_or_404(Application, id=application_id)
     application.is_approved = True
     application.save()
 
     send_email([application.student.email], application.course_name)
 
-    return redirect(instructor_summary_view)
+    return redirect(request.session.get('previous_url', '/'))
 
 def send_email(recipients, course_name):
     send_mail(
