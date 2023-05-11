@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from application.models import Application
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.core.mail import send_mail
 
 def get_term(course):
     return course.term
@@ -86,4 +87,16 @@ def approve_application(request, application_id):
     application.is_approved = True
     application.save()
 
+    send_email([application.student.email], application.course_name)
+
+    return redirect(instructor_summary_view)
+
+def send_email(recipients, course_name):
+    send_mail(
+        'Your application has been approved!',
+        'Congratulations! Your application for the course {} has been approved. Please accept/decline the request in your portal.'.format(course_name),
+        'swe2023testing@gmail.com',
+        recipients,
+        fail_silently=False,
+    )
     return redirect(instructor_summary_view)
