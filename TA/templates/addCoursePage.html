@@ -19,10 +19,16 @@
                 <p class="mb-4">
                   Please Enter Info Below
                 </p>
-
-                <h6 class="mb-4">
-                  Professor: {{ user.first_name }} {{ user.last_name}}
-                </h6>
+                {% if user.role == 'A' %}
+                  <div class="form-group mb-4">
+                    <label for="professor_name">Professor:</label>
+                    <input type="text" class="form-control" id="professor_name" name="professor_name">
+                  </div>
+                {% else %}
+                  <h6 class="mb-4">
+                    Professor: {{ user.first_name }} {{ user.last_name}}
+                  </h6>
+                {% endif %}
                 <div class="form-group mb-4">
                   {{ form.course_name.label_tag }} {{ form.course_name }}
                 </div>
