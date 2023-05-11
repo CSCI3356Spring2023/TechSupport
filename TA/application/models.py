@@ -6,7 +6,7 @@ from login.models import CustomUser
 
 # Create your models here.
 class Application(models.Model):
-
+    is_approved = models.BooleanField(default=False)
     course_name = models.CharField(max_length=200, default=None, blank = False, null=False)
     course_number = models.CharField(max_length=200, default=None)
     description = models.CharField(max_length=800, default=None)

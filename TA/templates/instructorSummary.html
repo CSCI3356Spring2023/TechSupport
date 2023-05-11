@@ -151,6 +151,10 @@
               <td>{{ application.first_name }} {{application.last_name }}</td>
               <td class="text-center">
                 <a href="{% url 'edit_application' application.id %}" class="btn btn-primary">View</a>
+                <form method="post" action="{% url 'approve_application' application.id %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-success">Approve</button>
+                </form>
               </td>
             </tr>
             {% endfor %}

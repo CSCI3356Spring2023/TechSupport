@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from InstructorAddCourse.models import InstructorAddCourse
 from django.contrib.auth.models import User
 from application.models import Application
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 def get_term(course):
     return course.term
@@ -78,3 +79,11 @@ def instructor_show_applications(request):
         return redirect(instructor_summary_view)
     else:
         return redirect(instructor_summary_view)
+
+@require_POST
+def approve_application(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    application.is_approved = True
+    application.save()
+
+    return redirect(instructor_summary_view)
