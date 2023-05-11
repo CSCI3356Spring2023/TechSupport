@@ -8,6 +8,7 @@ from application.forms import ApplicationForm
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
+from django.views.decorators.http import require_POST
 
 
 # Create your views here.
@@ -149,4 +150,32 @@ def edit_application(request, application_id):
 def delete_application(request, application_id):
     course = get_object_or_404(Application, id=application_id)
     course.delete()
+    return redirect(student_summary_view)
+
+@login_required
+@require_POST
+def accept_application(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    course = InstructorAddCourse.objects.get(course_number=application.course_number)
+    # increment the curr_num_ta field
+    course.curr_num_ta += 1
+    course.save()
+    application.student_response = 'A'
+    application.save()
+
+    # Prevent student from accepting or applying for more positions
+    other_applications = Application.objects.filter(student=request.user).exclude(id=application_id)
+    for app in other_applications:
+        app.is_approved = False
+        app.save()
+
+    return redirect(student_summary_view)
+
+@login_required
+@require_POST
+def decline_application(request, application_id):
+    application = get_object_or_404(Application, id=application_id)
+    application.student_response = 'D'
+    application.save()
+
     return redirect(student_summary_view)

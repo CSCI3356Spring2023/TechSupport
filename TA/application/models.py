@@ -15,6 +15,17 @@ class Application(models.Model):
     eagle_id = models.CharField(max_length=255, default=None)
     student = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True, blank=True)
     
+    RESPONSE_CHOICES = [
+        ('P', 'Pending'),
+        ('A', 'Accepted'),
+        ('D', 'Declined'),
+    ]
+    student_response = models.CharField(
+        max_length=1,
+        choices=RESPONSE_CHOICES,
+        default='P',
+    )
+
     GRADES = (
         ('--', '--'),
         ('a', 'A'),

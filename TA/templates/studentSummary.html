@@ -129,18 +129,41 @@
           </table>
         </div>
 
-        
         {% if approved_applications %}
           <h3>Accepted Applications</h3>
           <div style="height: 300px; overflow: auto;">
-            <table class="table table-striped table-bordered table-hover">
-              <th class="text-center" >Class<br />(Class Number)</th>
-              <tbody id="table-body">
-                {% for application in approved_applications %}
-                <td class="text-center" > {{ application.course_name }}</td>
-                {% endfor %}
-              </tbody>
-            </table>
+              <table class="table table-striped table-bordered table-hover">
+                  <thead>
+                      <tr>
+                          <th class="text-center">Class<br />(Class Number)</th>
+                          <th class="text-center">Response</th>
+                      </tr>
+                  </thead>
+                  <tbody id="table-body">
+                      {% for application in approved_applications %}
+                      <tr>
+                          <td class="text-center">{{ application.course_name }}</td>
+                          <td class="text-center">
+                              {% if application.student_response == 'P' %}
+                                  <form></form>
+                                  <form method="post" action="{% url 'accept_application' application.id %}">
+                                      {% csrf_token %}
+                                      <input type="submit" value="Accept" class="btn btn-primary">
+                                  </form>
+                                  <form method="post" action="{% url 'decline_application' application.id %}">
+                                      {% csrf_token %}
+                                      <input type="submit" value="Decline" class="btn btn-danger">
+                                  </form>
+                              {% elif application.student_response == 'A' %}
+                                  Accepted
+                              {% elif application.student_response == 'D' %}
+                                  Declined
+                              {% endif %}
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
           </div>
         {% else %}
           <h3>Current Applications</h3>
