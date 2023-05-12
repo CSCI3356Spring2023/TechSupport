@@ -75,13 +75,19 @@ def student_summary_view(response):
 
     pending_applications = Application.objects.filter(student=response.user, is_approved=False)
     approved_applications = Application.objects.filter(student=response.user, is_approved=True)
+    rejected_applications = Application.objects.filter(student=response.user, is_rejected=True)
 
     print(f'User: {response.user}')
     print(f'Application Objects: {application_objects}')
 
-    context = {'course_objects': course_objects, 'course_count': course_count,
-               'pending_applications': pending_applications, 'approved_applications': approved_applications,
-               'term_keys': term_keys, 'dept_keys': dept_keys, 'curr_user': curr_user}
+    context = {'course_objects': course_objects,
+               'course_count': course_count,
+               'pending_applications': pending_applications,
+               'approved_applications': approved_applications,
+               'rejected_applications': rejected_applications,
+               'term_keys': term_keys,
+               'dept_keys': dept_keys,
+               'curr_user': curr_user}
 
     return render(response, "studentSummary.html", context)
 
