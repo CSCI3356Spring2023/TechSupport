@@ -92,6 +92,17 @@ def approve_application(request, application_id):
 
     return redirect(request.session.get('previous_url', '/'))
 
+@require_POST
+def reject_application(request, application_id):
+    request.session['previous_url'] = request.META.get('HTTP_REFERER', '/')
+    application = get_object_or_404(Application, id=application_id)
+    application.is_rejected = True
+    application.save()
+
+    send_email([application.student.email], application.course_name)
+
+    return redirect(request.session.get('previous_url', '/'))
+
 def send_email(recipients, course_name):
     send_mail(
         'Your application has been approved!',

@@ -19,7 +19,7 @@ from django.views.generic.base import TemplateView
 from application.views import application_view
 from InstructorAddCourse.views import instructor_add_course_view
 from adminSummary.views import admin_summary_view, send_email, edit_course, delete_course, show_applications
-from instructorSummary.views import instructor_summary_view, instructor_show_applications, approve_application
+from instructorSummary.views import instructor_summary_view, instructor_show_applications, approve_application, reject_application
 from studentSummary.views import student_summary_view, apply_course, edit_application, delete_application, accept_application, decline_application
 from login.views import  login_home, logout, register, welcome
 
@@ -45,6 +45,7 @@ urlpatterns = [
     path('show_applications/', show_applications, name='show_applications'),
     path('instructor_show_applications/', instructor_show_applications, name='instructor_show_applications'),
     path('approve_application/<int:application_id>/', approve_application, name='approve_application'),
+    path('reject_application/<int:application_id>/', reject_application, name='reject_application'),
     path('accept_application/<int:application_id>/', accept_application, name='accept_application'),
     path('decline_application/<int:application_id>/', decline_application, name='decline_application'),
 
