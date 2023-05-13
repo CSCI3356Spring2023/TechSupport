@@ -1,2 +1,10 @@
 <h1>Success! Your application has been submitted<h1>
-    <a href="http://127.0.0.1:8000/instructor_summary/">Back to Home Page</a>
+
+
+    {% if user.role == 'A' %}
+    <a href="http://127.0.0.1:8000/admin_summary/">Back to Home Page</a>
+  {% endif %}
+  
+  {% if user.role == 'T' %}
+  <a href="http://127.0.0.1:8000/instructor_summary/">Back to Home Page</a>
+{% endif %}
