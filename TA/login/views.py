@@ -53,6 +53,7 @@ def register(request):
            major = form.cleaned_data.get('major')
            eagle_id = form.cleaned_data.get('eagle_id')
            year = form.cleaned_data.get('year')
+           email = form.cleaned_data.get('email')
 
 
 
@@ -66,6 +67,7 @@ def register(request):
                first_name = first_name,
                last_name = last_name,
                year = year,
+               email = email,
            )
 
 

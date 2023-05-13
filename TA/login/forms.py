@@ -56,10 +56,10 @@ class RegistrationForm(UserCreationForm):
    role = forms.ChoiceField(choices=ROLE_CHOICES)
    first_name = forms.CharField(max_length = 20, required = True)
    last_name = forms.CharField(max_length = 20, required = True)
-
    major = forms.ChoiceField(choices=MAJOR_CHOICES, required=False)
    eagle_id = forms.CharField(max_length=8, required=False)
    year = forms.ChoiceField(choices=YEAR_CHOICES, required=False)
+   email = forms.EmailField(max_length=254, required=True)
 
 
    def clean(self):
@@ -85,4 +85,4 @@ class RegistrationForm(UserCreationForm):
 
    class Meta(UserCreationForm.Meta):
        model = CustomUser
-       fields = ['username', 'password1', 'password2', 'role', 'first_name', 'last_name', 'major', 'eagle_id', 'year']
+       fields = ['username', 'password1', 'password2', 'role', 'first_name', 'last_name', 'major', 'eagle_id', 'year','email']
