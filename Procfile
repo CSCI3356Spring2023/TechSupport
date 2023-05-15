@@ -1,1 +1,1 @@
-web: cd ./TechSupport && python3 manage.py migrate && gunicorn TechSupport.wsgi
+web: cd ./TechSupport && cd TA && python3 manage.py migrate && cd ./TechSupport && gunicorn TechSupport.wsgi
