@@ -1,1 +1,1 @@
-web: gunicorn 'TechSupport.wsgi'
+web: cd TAApp && gunicorn 'TAApp.wsgi'
