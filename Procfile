@@ -1,1 +1,1 @@
-web: gunicorn TA.wsgi
+web: gunicorn 'TechSupport.wsgi'
