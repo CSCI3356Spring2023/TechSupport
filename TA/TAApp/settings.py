@@ -145,3 +145,7 @@ EMAIL_HOST_PASSWORD = 'kvaqgqevyfokskbo'
 #password: testingtesting
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://techsupport-production.up.railway.app'
+]
