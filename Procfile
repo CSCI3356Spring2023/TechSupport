@@ -1,0 +1,1 @@
+web: cd ./YourProjectName && python manage.py migrate && gunicorn TechSupport.wsgi

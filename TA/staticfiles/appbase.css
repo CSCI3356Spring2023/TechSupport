@@ -1,0 +1,18 @@
+.body {
+  background-color: #f8f9fa;
+}
+.sign-out-button {
+  background-color: #f8f9fa;
+  border: 1px solid #c3c3c3;
+  border-radius: 10px;
+  padding: 7px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.sign-out-button:hover {
+  background-color: #e0e0e0;
+  border-color: #999;
+}
+/* 
+  add pass fail functionality to grade
+  confirm eagle id matches with name */
