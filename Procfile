@@ -1,1 +1,1 @@
-web: cd TAApp && gunicorn 'TAApp.wsgi'
+web: gunicorn TAApp.wsgi
