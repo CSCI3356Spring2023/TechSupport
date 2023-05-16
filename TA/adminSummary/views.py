@@ -121,4 +121,5 @@ def edit_course(request, course_id):
 def delete_course(request, course_id):
     course = get_object_or_404(InstructorAddCourse, id=course_id)
     course.delete()
-    return redirect(admin_summary_view)
+    # return redirect(admin_summary_view)
+    return redirect(request.session.get('previous_url', '/'))
